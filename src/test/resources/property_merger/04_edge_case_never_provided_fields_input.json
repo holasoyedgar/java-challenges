@@ -1,0 +1,7 @@
+{
+  "listings": [
+    { "zpid": "Z4", "lastUpdated": "2026-03-01T10:00:00", "price": 100000.0, "bedrooms": null, "bathrooms": null },
+    { "zpid": "Z4", "lastUpdated": "2026-03-02T10:00:00", "price": 105000.0, "bedrooms": null, "bathrooms": null },
+    { "zpid": "Z4", "lastUpdated": "2026-03-03T10:00:00", "price": 102000.0, "bedrooms": null, "bathrooms": null }
+  ]
+}

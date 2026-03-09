@@ -23,7 +23,10 @@ class PropertyMergerTest {
     static Stream<String> testCaseProvider() {
         return Stream.of(
                 "01_single_property_coalesce",
-                "02_multiple_properties_sorting"
+                "02_multiple_properties_sorting",
+                "03_edge_case_latest_price_null",
+                "04_edge_case_never_provided_fields",
+                "05_complex_unordered_updates"
         );
     }
 

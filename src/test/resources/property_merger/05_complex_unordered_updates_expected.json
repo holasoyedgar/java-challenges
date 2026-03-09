@@ -1,0 +1,5 @@
+[
+  { "zpid": "A1", "lastUpdated": "2026-03-08T10:00:00", "price": 250000.0, "bedrooms": 1, "bathrooms": 2 },
+  { "zpid": "B1", "lastUpdated": "2026-03-05T10:00:00", "price": null, "bedrooms": 4, "bathrooms": 3 },
+  { "zpid": "C1", "lastUpdated": "2026-03-10T10:00:00", "price": 850000.0, "bedrooms": 5, "bathrooms": 4 }
+]

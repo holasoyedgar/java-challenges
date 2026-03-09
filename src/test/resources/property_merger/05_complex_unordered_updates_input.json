@@ -1,0 +1,10 @@
+{
+  "listings": [
+    { "zpid": "B1", "lastUpdated": "2026-03-05T10:00:00", "price": null, "bedrooms": 4, "bathrooms": null },
+    { "zpid": "A1", "lastUpdated": "2026-03-02T10:00:00", "price": 200000.0, "bedrooms": 1, "bathrooms": 1 },
+    { "zpid": "C1", "lastUpdated": "2026-03-01T10:00:00", "price": 900000.0, "bedrooms": null, "bathrooms": null },
+    { "zpid": "A1", "lastUpdated": "2026-03-08T10:00:00", "price": 250000.0, "bedrooms": null, "bathrooms": 2 },
+    { "zpid": "B1", "lastUpdated": "2026-03-01T10:00:00", "price": 300000.0, "bedrooms": 3, "bathrooms": 3 },
+    { "zpid": "C1", "lastUpdated": "2026-03-10T10:00:00", "price": 850000.0, "bedrooms": 5, "bathrooms": 4 }
+  ]
+}
