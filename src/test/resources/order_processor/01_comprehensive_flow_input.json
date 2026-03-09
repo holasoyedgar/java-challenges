@@ -1,0 +1,8 @@
+{
+  "orders": [
+    { "id": "O1", "price": 200.0, "type": 1 },
+    { "id": "O2", "price": 150.0, "type": 2 },
+    { "id": "O3", "price": 150.0, "type": 2 }
+  ],
+  "badIds": ["X1", "X2"]
+}

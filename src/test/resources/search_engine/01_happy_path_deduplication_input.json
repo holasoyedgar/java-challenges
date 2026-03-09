@@ -1,0 +1,11 @@
+{
+  "listings": [
+    { "id": "L1", "isActive": true, "price": 150000.00, "agentId": "A1" },
+    { "id": "L2", "isActive": false, "price": 100000.00, "agentId": "A1" },
+    { "id": "L3", "isActive": true, "price": 140000.00, "agentId": "A1" },
+    { "id": "L4", "isActive": true, "price": 200000.00, "agentId": "A2" },
+    { "id": "L5", "isActive": true, "price": 190000.00, "agentId": "A3" },
+    { "id": "L6", "isActive": true, "agentId": "A4" }
+  ],
+  "k": 2
+}

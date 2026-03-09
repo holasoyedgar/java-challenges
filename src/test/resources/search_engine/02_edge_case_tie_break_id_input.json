@@ -1,0 +1,7 @@
+{
+  "listings": [
+    { "id": "Z99", "isActive": true, "price": 100000.00, "agentId": "A1" },
+    { "id": "A01", "isActive": true, "price": 100000.00, "agentId": "A1" }
+  ],
+  "k": 1
+}

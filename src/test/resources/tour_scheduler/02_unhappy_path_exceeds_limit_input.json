@@ -1,0 +1,20 @@
+{
+  "existingTours": [
+    {
+      "id": "t1",
+      "startTime": "2026-03-06T10:00:00",
+      "endTime": "2026-03-06T11:00:00"
+    },
+    {
+      "id": "t2",
+      "startTime": "2026-03-06T10:30:00",
+      "endTime": "2026-03-06T11:30:00"
+    }
+  ],
+  "request": {
+    "id": "req1",
+    "startTime": "2026-03-06T10:45:00",
+    "endTime": "2026-03-06T11:15:00"
+  },
+  "maxSimultaneous": 2
+}
