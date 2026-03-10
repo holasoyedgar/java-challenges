@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.orderprocessor;
 
 import com.example.util.ChallengeTestRunner;
 import org.junit.jupiter.params.ParameterizedTest;

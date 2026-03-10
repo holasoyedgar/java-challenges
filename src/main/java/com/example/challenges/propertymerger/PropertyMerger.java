@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.propertymerger;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

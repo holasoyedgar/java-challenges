@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.searchengine;
 
 import com.example.util.ChallengeTestRunner;
 import org.junit.jupiter.params.ParameterizedTest;

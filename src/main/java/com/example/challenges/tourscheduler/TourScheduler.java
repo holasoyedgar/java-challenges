@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.tourscheduler;
 
 import java.time.LocalDateTime;
 import java.util.*;

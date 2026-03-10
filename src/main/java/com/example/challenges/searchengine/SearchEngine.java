@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.searchengine;
 
 import java.math.BigDecimal;
 import java.util.*;

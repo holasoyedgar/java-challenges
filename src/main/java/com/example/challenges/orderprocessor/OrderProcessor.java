@@ -1,4 +1,4 @@
-package com.example.challenges;
+package com.example.challenges.orderprocessor;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
