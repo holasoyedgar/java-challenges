@@ -22,19 +22,16 @@ public class NeighborhoodAnalyzer {
     private static NeighborhoodStats processListings(List<Listing> listings) {
         String neighborhood = listings.get(0).neighborhood();
         int activeCount = listings.size();
-        BigDecimal topPrice = obtainNeighborhoodsTopPrice(listings);
+        BigDecimal topPrice = getNeighborhoodTopPrice(listings);
         return new NeighborhoodStats(neighborhood, activeCount, topPrice);
     }
 
-    private static BigDecimal obtainNeighborhoodsTopPrice(List<Listing> listings) {
-        BigDecimal topPrice = null;
-        for (Listing listing : listings) {
-            if (listing.price() != null && listing.price().compareTo(topPrice != null ? topPrice : BigDecimal.ZERO) > 0) {
-                topPrice = listing.price();
-            }
-        }
-
-        return topPrice;
+    private static BigDecimal getNeighborhoodTopPrice(List<Listing> listings) {
+        return listings.stream()
+                .map(Listing::price)
+                .filter(Objects::nonNull)
+                .max(Comparator.naturalOrder())
+                .orElse(null);
     }
 }
 
