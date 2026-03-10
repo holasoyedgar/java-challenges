@@ -1,0 +1,7 @@
+{
+  "listings": [
+    { "id": "L1", "neighborhood": "Uptown", "price": null, "isActive": true },
+    { "id": "L2", "neighborhood": "Uptown", "price": 1000000.0, "isActive": false },
+    { "id": "L3", "neighborhood": "Uptown", "price": 800000.0, "isActive": true }
+  ]
+}

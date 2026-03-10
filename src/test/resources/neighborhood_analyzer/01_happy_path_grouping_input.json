@@ -1,0 +1,8 @@
+{
+  "listings": [
+    { "id": "L1", "neighborhood": "Downtown", "price": 450000.0, "isActive": true },
+    { "id": "L2", "neighborhood": "Suburbia", "price": 300000.0, "isActive": true },
+    { "id": "L3", "neighborhood": "Downtown", "price": 500000.0, "isActive": true },
+    { "id": "L4", "neighborhood": "Downtown", "price": 480000.0, "isActive": true }
+  ]
+}

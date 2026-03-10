@@ -1,0 +1,4 @@
+[
+  { "neighborhood": "Downtown", "activeCount": 3, "topPrice": 500000.0 },
+  { "neighborhood": "Suburbia", "activeCount": 1, "topPrice": 300000.0 }
+]
