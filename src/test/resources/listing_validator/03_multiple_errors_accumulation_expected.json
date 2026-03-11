@@ -1,0 +1,6 @@
+{
+  "validListings": [],
+  "errorMap": {
+    "CATASTROPHE_1": ["NEGATIVE_PRICE", "MISSING_NEIGHBORHOOD", "NEGATIVE_BEDROOMS"]
+  }
+}

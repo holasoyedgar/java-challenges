@@ -1,0 +1,7 @@
+{
+  "validListings": [
+    { "id": "L1", "price": 500000.0, "neighborhood": "Downtown", "bedrooms": 3 },
+    { "id": "L2", "price": null, "neighborhood": "Suburbia", "bedrooms": null }
+  ],
+  "errorMap": {}
+}

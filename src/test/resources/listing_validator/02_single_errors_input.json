@@ -1,0 +1,8 @@
+{
+  "listings": [
+    { "id": "ERR1", "price": -100.0, "neighborhood": "Uptown", "bedrooms": 2 },
+    { "id": "ERR2", "price": 200000.0, "neighborhood": "   ", "bedrooms": 2 },
+    { "id": "ERR3", "price": 300000.0, "neighborhood": "Midtown", "bedrooms": -1 },
+    { "id": "OK1", "price": 100000.0, "neighborhood": "Midtown", "bedrooms": 1 }
+  ]
+}

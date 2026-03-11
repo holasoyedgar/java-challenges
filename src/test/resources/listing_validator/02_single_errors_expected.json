@@ -1,0 +1,10 @@
+{
+  "validListings": [
+    { "id": "OK1", "price": 100000.0, "neighborhood": "Midtown", "bedrooms": 1 }
+  ],
+  "errorMap": {
+    "ERR1": ["NEGATIVE_PRICE"],
+    "ERR2": ["MISSING_NEIGHBORHOOD"],
+    "ERR3": ["NEGATIVE_BEDROOMS"]
+  }
+}
