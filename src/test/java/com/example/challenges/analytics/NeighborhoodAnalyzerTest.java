@@ -9,15 +9,15 @@ import java.util.stream.Stream;
 
 class NeighborhoodAnalyzerTest {
 
-    record AnalyzerWrapper(List<Listing> listings) {}
+    record AnalyzerWrapper(List<NeighborhoodAnalyzer.Listing> listings) {}
 
-    private final ChallengeTestRunner<AnalyzerWrapper, NeighborhoodStats[]> runner = new ChallengeTestRunner<>(
+    private final ChallengeTestRunner<AnalyzerWrapper, NeighborhoodAnalyzer.NeighborhoodStats[]> runner = new ChallengeTestRunner<>(
             "neighborhood_analyzer",
             AnalyzerWrapper.class,
-            NeighborhoodStats[].class,
+            NeighborhoodAnalyzer.NeighborhoodStats[].class,
             input -> new NeighborhoodAnalyzer()
                     .analyze(input.listings())
-                    .toArray(NeighborhoodStats[]::new)
+                    .toArray(NeighborhoodAnalyzer.NeighborhoodStats[]::new)
     );
 
     static Stream<String> testCaseProvider() {

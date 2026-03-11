@@ -4,6 +4,15 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class TourScheduler {
+    public record Tour(String id, LocalDateTime startTime, LocalDateTime endTime) {
+        public boolean isValid() {
+            return id != null &&
+                    startTime != null &&
+                    endTime != null &&
+                    endTime.isAfter(startTime);
+        }
+    }
+
     public boolean canBookTour(List<Tour> existingTours, Tour request, int maxSimultaneous) {
         if (existingTours == null || request == null || !request.isValid()) {
             return false;
@@ -29,14 +38,5 @@ public class TourScheduler {
         }
 
         return true;
-    }
-}
-
-record Tour(String id, LocalDateTime startTime, LocalDateTime endTime) {
-    public boolean isValid() {
-        return id != null &&
-                startTime != null &&
-                endTime != null &&
-                endTime.isAfter(startTime);
     }
 }

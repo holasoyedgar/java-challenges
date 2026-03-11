@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 class TourSchedulerTest {
 
-    record TourInputWrapper(List<Tour> existingTours, Tour request, int maxSimultaneous) {}
+    record TourInputWrapper(List<TourScheduler.Tour> existingTours, TourScheduler.Tour request, int maxSimultaneous) {}
 
     private final ChallengeTestRunner<TourInputWrapper, Boolean> runner = new ChallengeTestRunner<>(
             "tour_scheduler",

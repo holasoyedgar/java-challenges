@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 class OrderProcessorTest {
 
     // 1. El Wrapper para los dos parámetros de entrada
-    record OrderInputWrapper(List<Order> orders, List<String> badIds) {}
+    record OrderInputWrapper(List<OrderProcessor.Order> orders, List<String> badIds) {}
 
     // 2. El Runner espera un Array de Strings como salida
     private final ChallengeTestRunner<OrderInputWrapper, String[]> runner = new ChallengeTestRunner<>(

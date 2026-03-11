@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class NeighborhoodAnalyzer {
 
+    public record Listing(String id, String neighborhood, BigDecimal price, boolean isActive) {}
+    public record NeighborhoodStats(String neighborhood, long activeCount, BigDecimal topPrice) {}
+
     public List<NeighborhoodStats> analyze(List<Listing> listings) {
         return listings.stream()
                 .filter(Listing::isActive)
@@ -34,6 +37,3 @@ public class NeighborhoodAnalyzer {
                 .orElse(null);
     }
 }
-
-record Listing(String id, String neighborhood, BigDecimal price, boolean isActive) {}
-record NeighborhoodStats(String neighborhood, long activeCount, BigDecimal topPrice) {}

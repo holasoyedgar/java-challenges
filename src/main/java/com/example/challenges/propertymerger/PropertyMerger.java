@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class PropertyMerger {
 
+    public record MlsListing(String zpid, LocalDateTime lastUpdated, BigDecimal price, Integer bedrooms, Integer bathrooms) {}
+    public record MergedProperty(String zpid, LocalDateTime lastUpdated, BigDecimal price, Integer bedrooms, Integer bathrooms) {}
+
     public List<MergedProperty> mergeListings(List<MlsListing> listings) {
         return listings.stream()
                 .collect(Collectors.toMap(
@@ -63,6 +66,3 @@ public class PropertyMerger {
         );
     }
 }
-
-record MlsListing(String zpid, LocalDateTime lastUpdated, BigDecimal price, Integer bedrooms, Integer bathrooms) {}
-record MergedProperty(String zpid, LocalDateTime lastUpdated, BigDecimal price, Integer bedrooms, Integer bathrooms) {}

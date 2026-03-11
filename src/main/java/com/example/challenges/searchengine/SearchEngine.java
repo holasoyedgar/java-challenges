@@ -7,6 +7,19 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class SearchEngine {
+
+    public record Listing(String id,
+                   boolean isActive,
+                   BigDecimal price,
+                   String agentId) {
+        public boolean hasValidState() {
+            return id != null &&
+                    price != null &&
+                    agentId != null &&
+                    price.compareTo(BigDecimal.ZERO) > 0;
+        }
+    }
+
     public List<Listing> getTopListings(List<Listing> listings, int k) {
         if (k < 1 || listings == null) {
             throw new IllegalArgumentException("The arguments are invalid!");
@@ -35,17 +48,5 @@ public class SearchEngine {
         }
 
         return priorityQueue.stream().sorted(naturalOrder).toList();
-    }
-}
-
-record Listing(String id,
-               boolean isActive,
-               BigDecimal price,
-               String agentId) {
-    public boolean hasValidState() {
-        return id != null &&
-                price != null &&
-                agentId != null &&
-                price.compareTo(BigDecimal.ZERO) > 0;
     }
 }

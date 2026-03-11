@@ -9,15 +9,15 @@ import java.util.stream.Stream;
 
 class PropertyMergerTest {
 
-    record PropertyMergerWrapper(List<MlsListing> listings) {}
+    record PropertyMergerWrapper(List<PropertyMerger.MlsListing> listings) {}
 
-    private final ChallengeTestRunner<PropertyMergerWrapper, MergedProperty[]> runner = new ChallengeTestRunner<>(
+    private final ChallengeTestRunner<PropertyMergerWrapper, PropertyMerger.MergedProperty[]> runner = new ChallengeTestRunner<>(
             "property_merger",
             PropertyMergerWrapper.class,
-            MergedProperty[].class,
+            PropertyMerger.MergedProperty[].class,
             input -> new PropertyMerger()
                     .mergeListings(input.listings())
-                    .toArray(MergedProperty[]::new)
+                    .toArray(PropertyMerger.MergedProperty[]::new)
     );
 
     static Stream<String> testCaseProvider() {
