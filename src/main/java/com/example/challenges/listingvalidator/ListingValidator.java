@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ListingValidator {
@@ -13,14 +14,29 @@ public class ListingValidator {
     private record ValidationResult(RawListing rawListing, List<String> errors) {}
 
     enum ValidationError {
-        NEGATIVE_PRICE,
-        MISSING_NEIGHBORHOOD,
-        NEGATIVE_BEDROOMS
+        NEGATIVE_PRICE(rawListing -> rawListing.price() != null && rawListing.price().compareTo(BigDecimal.ZERO) < 0),
+        MISSING_NEIGHBORHOOD(rawListing -> rawListing.neighborhood() == null || rawListing.neighborhood().isBlank()),
+        NEGATIVE_BEDROOMS(rawListing -> rawListing.bedrooms() != null && rawListing.bedrooms() < 0);
+
+        private final Predicate<RawListing> predicate;
+        ValidationError(Predicate<RawListing> predicate) {
+            this.predicate = predicate;
+        }
+
+        public static List<String> getErrors(RawListing rawListing) {
+            List<String> errors = new ArrayList<>();
+            for (ValidationError error : values()) {
+                if (error.predicate.test(rawListing)) {
+                    errors.add(error.toString());
+                }
+            }
+            return errors;
+        }
     }
 
     public ValidationReport validate(List<RawListing> listings) {
         Map<Boolean, List<ValidationResult>> map = listings.stream()
-                .map(rawListing -> new ValidationResult(rawListing, calculateErrorPerListing(rawListing)))
+                .map(rawListing -> new ValidationResult(rawListing, ValidationError.getErrors(rawListing)))
                 .collect(Collectors.partitioningBy(validationResult -> validationResult.errors().isEmpty()));
 
         List<RawListing> validListings = map.get(true)
@@ -37,17 +53,4 @@ public class ListingValidator {
         return new ValidationReport(validListings, errorMap);
     }
 
-    private List<String> calculateErrorPerListing(RawListing rawListing) {
-        List<String> errors = new ArrayList<>();
-        if (rawListing.price() != null && rawListing.price().compareTo(BigDecimal.ZERO) < 0) {
-            errors.add(ValidationError.NEGATIVE_PRICE.toString());
-        }
-        if (rawListing.neighborhood() == null || rawListing.neighborhood().isBlank()) {
-            errors.add(ValidationError.MISSING_NEIGHBORHOOD.toString());
-        }
-        if (rawListing.bedrooms() != null && rawListing.bedrooms() < 0) {
-            errors.add(ValidationError.NEGATIVE_BEDROOMS.toString());
-        }
-        return errors;
-    }
 }
