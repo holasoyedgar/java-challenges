@@ -1,10 +1,9 @@
 package com.example.challenges.listingvalidator;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ListingValidator {
@@ -13,30 +12,15 @@ public class ListingValidator {
     public record ValidationReport(List<RawListing> validListings, Map<String, List<String>> errorMap) {}
     private record ValidationResult(RawListing rawListing, List<String> errors) {}
 
-    enum ValidationError {
-        NEGATIVE_PRICE(rawListing -> rawListing.price() != null && rawListing.price().compareTo(BigDecimal.ZERO) < 0),
-        MISSING_NEIGHBORHOOD(rawListing -> rawListing.neighborhood() == null || rawListing.neighborhood().isBlank()),
-        NEGATIVE_BEDROOMS(rawListing -> rawListing.bedrooms() != null && rawListing.bedrooms() < 0);
+    private final List<ValidationRule> rules;
 
-        private final Predicate<RawListing> predicate;
-        ValidationError(Predicate<RawListing> predicate) {
-            this.predicate = predicate;
-        }
-
-        public static List<String> getErrors(RawListing rawListing) {
-            List<String> errors = new ArrayList<>();
-            for (ValidationError error : values()) {
-                if (error.predicate.test(rawListing)) {
-                    errors.add(error.toString());
-                }
-            }
-            return errors;
-        }
+    public ListingValidator(List<ValidationRule> rules) {
+        this.rules = rules;
     }
 
     public ValidationReport validate(List<RawListing> listings) {
         Map<Boolean, List<ValidationResult>> map = listings.stream()
-                .map(rawListing -> new ValidationResult(rawListing, ValidationError.getErrors(rawListing)))
+                .map(rawListing -> new ValidationResult(rawListing, calculateErrors(rawListing)))
                 .collect(Collectors.partitioningBy(validationResult -> validationResult.errors().isEmpty()));
 
         List<RawListing> validListings = map.get(true)
@@ -53,4 +37,48 @@ public class ListingValidator {
         return new ValidationReport(validListings, errorMap);
     }
 
+    private List<String> calculateErrors(RawListing rawListing) {
+        return rules.stream()
+                .map(rule -> rule.evaluate(rawListing))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+}
+
+interface ValidationRule {
+    Optional<String> evaluate(ListingValidator.RawListing rawListing);
+}
+
+class NegativePriceRule implements ValidationRule {
+
+    @Override
+    public Optional<String> evaluate(ListingValidator.RawListing rawListing) {
+        if (rawListing.price() != null && rawListing.price().compareTo(BigDecimal.ZERO) < 0) {
+            return Optional.of("NEGATIVE_PRICE");
+        }
+        return Optional.empty();
+    }
+}
+
+class MissingNeighborhoodRule implements ValidationRule {
+
+    @Override
+    public Optional<String> evaluate(ListingValidator.RawListing rawListing) {
+        if (rawListing.neighborhood() == null || rawListing.neighborhood().isBlank()) {
+            return Optional.of("MISSING_NEIGHBORHOOD");
+        }
+        return Optional.empty();
+    }
+}
+
+class NegativeBedroomsRule implements ValidationRule {
+
+    @Override
+    public Optional<String> evaluate(ListingValidator.RawListing rawListing) {
+        if (rawListing.bedrooms() != null && rawListing.bedrooms() < 0) {
+            return Optional.of("NEGATIVE_BEDROOMS");
+        }
+        return Optional.empty();
+    }
 }

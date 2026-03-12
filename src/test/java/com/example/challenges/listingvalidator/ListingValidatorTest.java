@@ -15,7 +15,11 @@ class ListingValidatorTest {
             "listing_validator",
             ValidatorWrapper.class,
             ListingValidator.ValidationReport.class,
-            input -> new ListingValidator().validate(input.listings())
+            input -> new ListingValidator(List.of(
+                    new NegativePriceRule(),
+                    new MissingNeighborhoodRule(),
+                    new NegativeBedroomsRule())
+            ).validate(input.listings())
     );
 
     static Stream<String> testCaseProvider() {
