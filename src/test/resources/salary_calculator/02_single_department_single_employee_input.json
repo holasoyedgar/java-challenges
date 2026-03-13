@@ -1,0 +1,10 @@
+{
+  "departments": [
+    {
+      "name": "IT",
+      "employees": [
+        { "name": "Alice", "salary": 5000 }
+      ]
+    }
+  ]
+}
