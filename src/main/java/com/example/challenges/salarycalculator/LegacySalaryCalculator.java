@@ -13,7 +13,6 @@ public class LegacySalaryCalculator {
         return departments.stream()
                 .filter(Objects::nonNull)
                 .flatMap(department -> department.employees().stream())
-                .filter(Objects::nonNull)
                 .map(Employee::salary)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
