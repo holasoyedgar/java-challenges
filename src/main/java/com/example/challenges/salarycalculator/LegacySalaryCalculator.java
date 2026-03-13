@@ -12,8 +12,7 @@ public class LegacySalaryCalculator {
         }
         return departments.stream()
                 .filter(Objects::nonNull)
-                .flatMap(department -> department.employees().stream())
-                .map(Employee::salary)
+                .map(Department::calculateDepartmentTotalSalary)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
