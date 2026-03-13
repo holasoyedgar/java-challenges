@@ -4,6 +4,7 @@ import com.example.util.ChallengeTestRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -11,10 +12,10 @@ class LegacySalaryCalculatorTest {
 
     record DepartmentWrapper(List<Department> departments) {}
 
-    private final ChallengeTestRunner<DepartmentWrapper, Integer> runner = new ChallengeTestRunner<>(
+    private final ChallengeTestRunner<DepartmentWrapper, BigDecimal> runner = new ChallengeTestRunner<>(
             "salary_calculator",
             DepartmentWrapper.class,
-            Integer.class,
+            BigDecimal.class,
             input -> new LegacySalaryCalculator()
                     .calculateTotalSalary(input.departments())
     );

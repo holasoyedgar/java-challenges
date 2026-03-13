@@ -1,28 +1,23 @@
 package com.example.challenges.salarycalculator;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 public class LegacySalaryCalculator {
 
-    public int calculateTotalSalary(List<Department> departments) {
+    public BigDecimal calculateTotalSalary(List<Department> departments) {
         if (departments == null) {
-            return 0;
+            return BigDecimal.ZERO;
         }
-
-        int totalSalary = 0;
-
-        for (int i = 0; i < departments.size(); i++) {
-            Department dept = departments.get(i);
-            if (dept != null && dept.getEmployees() != null) {
-                for (int j = 0; j < dept.getEmployees().size(); j++) {
-                    Employee emp = dept.getEmployees().get(j);
-                    if (emp != null) {
-                        totalSalary += emp.getSalary();
-                    }
-                }
-            }
-        }
-
-        return totalSalary;
+        return departments.stream()
+                .filter(Objects::nonNull)
+                .filter(department -> department.employees() != null)
+                .flatMap(department -> department.employees().stream())
+                .filter(Objects::nonNull)
+                .map(Employee::salary)
+                .filter(Objects::nonNull)
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO);
     }
 }
