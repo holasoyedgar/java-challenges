@@ -12,12 +12,9 @@ public class LegacySalaryCalculator {
         }
         return departments.stream()
                 .filter(Objects::nonNull)
-                .filter(department -> department.employees() != null)
                 .flatMap(department -> department.employees().stream())
                 .filter(Objects::nonNull)
                 .map(Employee::salary)
-                .filter(Objects::nonNull)
-                .reduce(BigDecimal::add)
-                .orElse(BigDecimal.ZERO);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
