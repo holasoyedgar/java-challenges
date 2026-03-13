@@ -1,0 +1,8 @@
+{
+  "initialInventory": { "DESKTOP": 3 },
+  "requests": [
+    { "item": "DESKTOP", "quantity": 2 },
+    { "item": "DESKTOP", "quantity": 2 },
+    { "item": "DESKTOP", "quantity": 1 }
+  ]
+}

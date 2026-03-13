@@ -1,0 +1,7 @@
+{
+  "successful": [
+    { "item": "LAPTOP", "quantity": 2 },
+    { "item": "MOUSE", "quantity": 5 }
+  ],
+  "failed": []
+}

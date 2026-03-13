@@ -1,0 +1,9 @@
+{
+  "successful": [
+    { "item": "DESKTOP", "quantity": 2 },
+    { "item": "DESKTOP", "quantity": 1 }
+  ],
+  "failed": [
+    { "item": "DESKTOP", "quantity": 2, "reason": "OUT_OF_STOCK" }
+  ]
+}

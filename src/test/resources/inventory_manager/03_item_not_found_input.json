@@ -1,0 +1,6 @@
+{
+  "initialInventory": { "KEYBOARD": 20 },
+  "requests": [
+    { "item": "WEBCAM", "quantity": 1 }
+  ]
+}

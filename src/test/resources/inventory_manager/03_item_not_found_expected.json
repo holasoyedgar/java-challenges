@@ -1,0 +1,6 @@
+{
+  "successful": [],
+  "failed": [
+    { "item": "WEBCAM", "quantity": 1, "reason": "OUT_OF_STOCK" }
+  ]
+}

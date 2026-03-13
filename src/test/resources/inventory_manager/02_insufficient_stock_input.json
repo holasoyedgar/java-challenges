@@ -1,0 +1,6 @@
+{
+  "initialInventory": { "MONITOR": 5 },
+  "requests": [
+    { "item": "MONITOR", "quantity": 10 }
+  ]
+}

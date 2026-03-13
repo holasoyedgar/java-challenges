@@ -1,0 +1,6 @@
+{
+  "successful": [],
+  "failed": [
+    { "item": "MONITOR", "quantity": 10, "reason": "OUT_OF_STOCK" }
+  ]
+}
