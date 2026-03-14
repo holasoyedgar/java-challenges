@@ -11,7 +11,7 @@ public class ActiveInventory {
     }
 
     public boolean tryConsume(String item, int quantity) {
-        int stockQuantity = this.stock.getOrDefault(item, 0);
+        int stockQuantity = stock.getOrDefault(item, 0);
         if (stockQuantity >= quantity) {
             stock.put(item, stockQuantity - quantity);
             return true;
