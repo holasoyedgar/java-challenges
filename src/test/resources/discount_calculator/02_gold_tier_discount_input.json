@@ -1,0 +1,5 @@
+{
+  "customer": { "name": "John", "tier": "GOLD" },
+  "items": [ { "name": "Laptop", "price": 1000.00, "quantity": 1 } ],
+  "promoCode": null
+}

@@ -1,0 +1,5 @@
+{
+  "customer": { "name": "Alice", "tier": "NONE" },
+  "items": [ { "name": "Keyboard", "price": 40.00, "quantity": 1 } ],
+  "promoCode": "WELCOME"
+}

@@ -1,0 +1,35 @@
+package com.example.challenges.discount;
+
+import com.example.challenges.discount.domain.Order;
+import com.example.util.ChallengeTestRunner;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.math.BigDecimal;
+import java.util.stream.Stream;
+
+class LegacyOrderDiscountCalculatorTest {
+
+    private final ChallengeTestRunner<Order, BigDecimal> runner = new ChallengeTestRunner<>(
+            "discount_calculator",
+            Order.class,
+            BigDecimal.class,
+            input -> new LegacyOrderDiscountCalculator().calculateDiscount(input)
+    );
+
+    static Stream<String> testCaseProvider() {
+        return Stream.of(
+                "01_empty_order",
+                "02_gold_tier_discount",
+                "03_silver_tier_discount",
+                "04_welcome_promo_applied",
+                "05_welcome_promo_rejected"
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("testCaseProvider")
+    void executeTests(String caseName) {
+        runner.runTest(caseName);
+    }
+}
