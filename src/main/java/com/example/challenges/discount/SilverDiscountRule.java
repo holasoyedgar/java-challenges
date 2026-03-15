@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class SilverDiscountRule implements DiscountRule {
     @Override
     public BigDecimal calculate(Order order) {
-        return order.totalCost().multiply(new BigDecimal("0.05"));
+        return order.calculateTotalCost().multiply(new BigDecimal("0.05"));
     }
 
     @Override

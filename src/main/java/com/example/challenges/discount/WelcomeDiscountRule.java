@@ -12,6 +12,6 @@ public class WelcomeDiscountRule implements DiscountRule {
 
     @Override
     public boolean isApplicable(Order order) {
-        return "WELCOME".equals(order.promoCode()) && order.totalCost().compareTo(new BigDecimal("50.00")) > 0;
+        return "WELCOME".equals(order.promoCode()) && order.calculateTotalCost().compareTo(new BigDecimal("50.00")) > 0;
     }
 }

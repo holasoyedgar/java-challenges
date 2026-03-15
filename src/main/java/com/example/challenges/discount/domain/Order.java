@@ -16,9 +16,9 @@ public record Order(Customer customer, List<Item> items, String promoCode) {
                         noneMatch(item -> item.price().compareTo(BigDecimal.ZERO) < 0);
     }
 
-    public BigDecimal totalCost() {
+    public BigDecimal calculateTotalCost() {
         return items.stream()
-                .map(Item::price)
+                .map(item -> item.price().multiply(BigDecimal.valueOf(item.quantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
