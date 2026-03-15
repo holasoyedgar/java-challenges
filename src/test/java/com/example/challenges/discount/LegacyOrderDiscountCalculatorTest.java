@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.stream.Stream;
 
 class LegacyOrderDiscountCalculatorTest {
@@ -14,7 +15,11 @@ class LegacyOrderDiscountCalculatorTest {
             "discount_calculator",
             Order.class,
             BigDecimal.class,
-            input -> new LegacyOrderDiscountCalculator().calculateDiscount(input)
+            input -> new LegacyOrderDiscountCalculator(
+                    List.of(new GoldDiscountRule(),
+                            new SilverDiscountRule(),
+                            new WelcomeDiscountRule())
+            ).calculateDiscount(input)
     );
 
     static Stream<String> testCaseProvider() {
