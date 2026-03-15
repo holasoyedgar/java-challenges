@@ -19,8 +19,8 @@ class LegacyOrderDiscountCalculatorTest {
             Order.class,
             BigDecimal.class,
             input -> new LegacyOrderDiscountCalculator(
-                    List.of(new GoldDiscountRule(),
-                            new SilverDiscountRule(),
+                    List.of(new TierDiscountRule("GOLD", "0.10"),
+                            new TierDiscountRule("SILVER", "0.05"),
                             new WelcomeDiscountRule())
             ).calculateDiscount(input)
     );
