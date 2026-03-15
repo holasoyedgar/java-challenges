@@ -1,0 +1,7 @@
+{
+  "customer": { "name": "Alice", "tier": "GOLD" },
+  "items": [
+    { "name": "Monitor", "price": 300.00, "quantity": 2 }
+  ],
+  "promoCode": null
+}

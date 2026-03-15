@@ -1,0 +1,7 @@
+{
+  "customer": { "name": "Charlie", "tier": "NONE" },
+  "items": [
+    { "name": "USB Drive", "price": 20.00, "quantity": 3 }
+  ],
+  "promoCode": "WELCOME"
+}

@@ -31,7 +31,10 @@ class LegacyOrderDiscountCalculatorTest {
                 "02_gold_tier_discount",
                 "03_silver_tier_discount",
                 "04_welcome_promo_applied",
-                "05_welcome_promo_rejected"
+                "05_welcome_promo_rejected",
+                "06_welcome_promo_quantity_bug",
+                "07_gold_tier_quantity_bug",
+                "08_silver_tier_quantity_bug"
         );
     }
 
