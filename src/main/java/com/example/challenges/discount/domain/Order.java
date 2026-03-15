@@ -6,14 +6,11 @@ import java.util.Objects;
 
 public record Order(Customer customer, List<Item> items, String promoCode) {
     public Order {
-        items = items != null ? items.stream().filter(Objects::nonNull)
-                .filter(item -> item.price() != null).toList() : List.of();
+        items = items != null ? items.stream().filter(Objects::nonNull).toList() : List.of();
     }
 
     public boolean isValidOrder() {
-        return customer != null &&
-                items.stream(). // Negative prices.
-                        noneMatch(item -> item.price().compareTo(BigDecimal.ZERO) < 0);
+        return customer != null;
     }
 
     public BigDecimal calculateTotalCost() {

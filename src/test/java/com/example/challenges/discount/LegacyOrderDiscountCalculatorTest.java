@@ -1,7 +1,10 @@
 package com.example.challenges.discount;
 
+import com.example.challenges.discount.domain.Item;
 import com.example.challenges.discount.domain.Order;
 import com.example.util.ChallengeTestRunner;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -36,5 +39,15 @@ class LegacyOrderDiscountCalculatorTest {
     @MethodSource("testCaseProvider")
     void executeTests(String caseName) {
         runner.runTest(caseName);
+    }
+
+    @Test
+    void shouldThrowException_WhenItemPriceIsNegative() {
+        IllegalArgumentException exception = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> new Item("Laptop", new BigDecimal("-100.00"), 1)
+        );
+
+        Assertions.assertEquals("Price is not valid", exception.getMessage());
     }
 }
