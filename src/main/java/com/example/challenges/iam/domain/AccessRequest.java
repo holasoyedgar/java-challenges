@@ -1,9 +1,9 @@
 package com.example.challenges.iam.domain;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public record AccessRequest(UserContext userContext, List<PolicyRule> policies, String targetAction) {
     public AccessRequest {
@@ -17,6 +17,7 @@ public record AccessRequest(UserContext userContext, List<PolicyRule> policies, 
     }
 
     public Set<String> getUserContextRoles() {
-        return new HashSet<>(userContext.roles());
+        return userContext.roles().stream()
+                .collect(Collectors.toUnmodifiableSet());
     }
 }
