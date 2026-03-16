@@ -10,7 +10,7 @@ public enum Effect {
 
     private static final Set<String> VALID_EFFECTS = Arrays.stream(values())
             .map(Enum::name)
-            .collect(Collectors.toSet());
+            .collect(Collectors.toUnmodifiableSet());
 
     public static boolean isValidEffect(String effect) {
         return effect != null && VALID_EFFECTS.contains(effect);
