@@ -1,0 +1,7 @@
+{
+  "userContext": { "username": "diana", "roles": ["INTERN"] },
+  "policies": [
+    { "role": "ADMIN", "action": "iam:CreateUser", "effect": "ALLOW" }
+  ],
+  "targetAction": "iam:CreateUser"
+}

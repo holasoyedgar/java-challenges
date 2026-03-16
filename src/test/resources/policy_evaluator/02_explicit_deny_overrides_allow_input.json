@@ -1,0 +1,8 @@
+{
+  "userContext": { "username": "bob", "roles": ["DEVELOPER", "CONTRACTOR"] },
+  "policies": [
+    { "role": "DEVELOPER", "action": "ec2:StartInstances", "effect": "ALLOW" },
+    { "role": "CONTRACTOR", "action": "ec2:StartInstances", "effect": "DENY" }
+  ],
+  "targetAction": "ec2:StartInstances"
+}

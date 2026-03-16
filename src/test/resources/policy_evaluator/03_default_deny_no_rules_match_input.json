@@ -1,0 +1,7 @@
+{
+  "userContext": { "username": "charlie", "roles": ["QA"] },
+  "policies": [
+    { "role": "QA", "action": "s3:GetObject", "effect": "ALLOW" }
+  ],
+  "targetAction": "s3:PutObject"
+}

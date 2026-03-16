@@ -1,0 +1,5 @@
+{
+  "userContext": { "username": "eve", "roles": ["ADMIN"] },
+  "policies": [],
+  "targetAction": "ec2:StopInstances"
+}
