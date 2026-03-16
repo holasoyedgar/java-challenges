@@ -15,7 +15,7 @@ public class PolicyEvaluator {
             return new AccessResult(false, Reason.DEFAULT_DENY.name());
         }
         Set<String> userRoles = request.getUserContextRoles();
-        userRoles.add("MYYYY");
+
         System.out.println(userRoles);
         List<PolicyRule> applicableRules = request.policies().stream()
                 .filter(rule -> rule.appliesTo(userRoles, request.targetAction()))
