@@ -1,0 +1,5 @@
+{
+  "subscriptions": [
+    { "userId": "U3", "planId": "PRO", "status": "PAST_DUE", "monthlyRate": 100.00, "monthsOverdue": 2 }
+  ]
+}

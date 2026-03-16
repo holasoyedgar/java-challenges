@@ -1,0 +1,7 @@
+{
+  "subscriptions": [
+    { "userId": "U1", "planId": "PLAN_A", "status": "ACTIVE", "monthlyRate": 20.00, "monthsOverdue": 0 },
+    { "userId": "U1", "planId": "PLAN_B", "status": "CANCELED", "monthlyRate": 50.00, "monthsOverdue": 0 },
+    { "userId": "U2", "planId": "PLAN_C", "status": "ACTIVE", "monthlyRate": 15.00, "monthsOverdue": 0 }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "summaries": [
+    { "userId": "U1", "totalBilled": 20.00 },
+    { "userId": "U2", "totalBilled": 15.00 }
+  ]
+}
