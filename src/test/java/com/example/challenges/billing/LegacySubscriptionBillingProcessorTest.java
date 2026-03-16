@@ -1,4 +1,4 @@
-package com.example.billing;
+package com.example.challenges.billing;
 
 import com.example.challenges.billing.LegacySubscriptionBillingProcessor;
 import com.example.challenges.billing.domain.BillingRequest;
