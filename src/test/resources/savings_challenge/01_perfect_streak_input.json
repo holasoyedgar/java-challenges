@@ -1,0 +1,7 @@
+{
+  "deposits": [
+    { "dayOfYear": 1, "amount": 1.00 },
+    { "dayOfYear": 2, "amount": 2.00 },
+    { "dayOfYear": 3, "amount": 3.00 }
+  ]
+}
