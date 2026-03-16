@@ -1,4 +1,4 @@
-package com.example.challenges.savings;
+package com.example.challenges.savings.domain;
 
 import java.math.BigDecimal;
 
@@ -8,10 +8,10 @@ public record DailyDeposit(int dayOfYear, BigDecimal amount) {
             throw new IllegalArgumentException("The day of the year cannot be zero or negative");
         }
         if (dayOfYear > 366) {
-            throw new IllegalArgumentException("The number is greater than the number of days in a year");
+            throw new IllegalArgumentException("The day of the year is greater than the number of days in a year");
         }
-        if (amount != null && amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("The amount cannot be less than 0");
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("The amount is null or is less than 0");
         }
     }
 
@@ -19,7 +19,7 @@ public record DailyDeposit(int dayOfYear, BigDecimal amount) {
         return amount.compareTo(BigDecimal.valueOf(dayOfYear)) >= 0;
     }
 
-    public boolean isDayConsecutive(int lastDay) {
-        return lastDay == 0 || lastDay == dayOfYear - 1;
+    public boolean isConsecutiveTo(int lastDay) {
+        return dayOfYear == lastDay + 1;
     }
 }

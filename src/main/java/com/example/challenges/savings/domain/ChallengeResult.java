@@ -1,4 +1,4 @@
-package com.example.challenges.savings;
+package com.example.challenges.savings.domain;
 
 import java.math.BigDecimal;
 

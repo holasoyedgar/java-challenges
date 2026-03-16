@@ -1,5 +1,7 @@
 package com.example.challenges.savings;
 
+import com.example.challenges.savings.domain.ChallengeRequest;
+import com.example.challenges.savings.domain.ChallengeResult;
 import com.example.util.ChallengeTestRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
