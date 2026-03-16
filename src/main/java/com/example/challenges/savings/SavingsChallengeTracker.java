@@ -1,8 +1,5 @@
 package com.example.challenges.savings;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 public class SavingsChallengeTracker {
 
     /**
@@ -11,8 +8,6 @@ public class SavingsChallengeTracker {
      * @return ChallengeResult con el total ahorrado, días exitosos y la racha máxima.
      */
     public ChallengeResult evaluateChallenge(ChallengeRequest request) {
-        // TODO: Implementar la lógica de ordenamiento, agregación y cálculo de rachas.
-        // Asegúrate de proteger la inmutabilidad de los datos donde sea necesario.
         return null;
     }
 }

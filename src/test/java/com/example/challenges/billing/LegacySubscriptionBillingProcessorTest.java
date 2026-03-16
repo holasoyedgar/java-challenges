@@ -1,6 +1,5 @@
 package com.example.challenges.billing;
 
-import com.example.challenges.billing.LegacySubscriptionBillingProcessor;
 import com.example.challenges.billing.domain.BillingRequest;
 import com.example.challenges.billing.domain.BillingResult;
 import com.example.util.ChallengeTestRunner;
