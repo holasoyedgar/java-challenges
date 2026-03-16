@@ -1,13 +1,37 @@
 package com.example.challenges.savings;
 
-public class SavingsChallengeTracker {
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Comparator;
+import java.util.List;
 
-    /**
-     * Evalúa el progreso de un reto de ahorro.
-     * @param request Contiene los depósitos realizados (posiblemente desordenados).
-     * @return ChallengeResult con el total ahorrado, días exitosos y la racha máxima.
-     */
+public class SavingsChallengeTracker {
     public ChallengeResult evaluateChallenge(ChallengeRequest request) {
-        return null;
+        List<DailyDeposit> orderedDeposits = request.deposits()
+                .stream()
+                .sorted(Comparator.comparing(DailyDeposit::dayOfYear))
+                .toList();
+        BigDecimal totalSaved = BigDecimal.ZERO;
+        int successfulDays = 0;
+        int longestStreak = 0;
+        int currentStreak = 0;
+        int lastDay = 0;
+
+        for (DailyDeposit deposit : orderedDeposits) {
+            if (deposit.isSuccessfulDay()) {
+                successfulDays++;
+                if (deposit.isDayConsecutive(lastDay)) {
+                    currentStreak++;
+                    longestStreak = Math.max(longestStreak, currentStreak);
+                } else {
+                    currentStreak = 1;
+                }
+            } else {
+                currentStreak = 0;
+            }
+            totalSaved = totalSaved.add(deposit.amount());
+            lastDay = deposit.dayOfYear();
+        }
+        return new ChallengeResult(totalSaved.setScale(2, RoundingMode.HALF_UP), successfulDays, longestStreak);
     }
 }
