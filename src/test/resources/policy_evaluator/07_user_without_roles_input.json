@@ -1,0 +1,7 @@
+{
+  "userContext": { "username": "ghost", "roles": [] },
+  "policies": [
+    { "role": "USER", "action": "api:Read", "effect": "ALLOW" }
+  ],
+  "targetAction": "api:Read"
+}

@@ -23,7 +23,12 @@ class PolicyEvaluatorTest {
                 "02_explicit_deny_overrides_allow",
                 "03_default_deny_no_rules_match",
                 "04_unassigned_role_allow_ignored",
-                "05_empty_policies"
+                "05_empty_policies",
+                "06_null_collections_in_request",
+                "07_user_without_roles",
+                "08_multiple_allows_overridden_by_single_deny",
+                "09_malformed_policy_with_nulls",
+                "10_partial_action_match_rejected"
         );
     }
 

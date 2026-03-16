@@ -1,0 +1,7 @@
+{
+  "userContext": { "username": "jane", "roles": ["READER"] },
+  "policies": [
+    { "role": "READER", "action": "s3:GetObject", "effect": "ALLOW" }
+  ],
+  "targetAction": "s3:Get"
+}

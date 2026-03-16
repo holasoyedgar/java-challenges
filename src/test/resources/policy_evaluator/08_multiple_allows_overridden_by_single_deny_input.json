@@ -1,0 +1,9 @@
+{
+  "userContext": { "username": "helen", "roles": ["DEV", "ADMIN", "RESTRICTED"] },
+  "policies": [
+    { "role": "DEV", "action": "db:DropTable", "effect": "ALLOW" },
+    { "role": "ADMIN", "action": "db:DropTable", "effect": "ALLOW" },
+    { "role": "RESTRICTED", "action": "db:DropTable", "effect": "DENY" }
+  ],
+  "targetAction": "db:DropTable"
+}

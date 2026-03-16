@@ -1,0 +1,9 @@
+{
+  "userContext": { "username": "ian", "roles": ["MANAGER"] },
+  "policies": [
+    { "role": null, "action": "billing:View", "effect": "ALLOW" },
+    { "role": "MANAGER", "action": null, "effect": "ALLOW" },
+    { "role": "MANAGER", "action": "billing:View", "effect": "ALLOW" }
+  ],
+  "targetAction": "billing:View"
+}

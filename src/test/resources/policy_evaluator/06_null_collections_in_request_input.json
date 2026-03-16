@@ -1,0 +1,5 @@
+{
+  "userContext": { "username": "frank", "roles": null },
+  "policies": null,
+  "targetAction": "s3:DeleteObject"
+}
