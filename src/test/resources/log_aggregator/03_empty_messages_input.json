@@ -1,0 +1,6 @@
+{
+  "logs": [
+    { "module": "API", "level": "ERROR", "message": "" },
+    { "module": "API", "level": "ERROR", "message": "Timeout" }
+  ]
+}

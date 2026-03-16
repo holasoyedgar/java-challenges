@@ -1,0 +1,7 @@
+{
+  "logs": [
+    { "module": "AUTH", "level": "ERROR", "message": "Bad credentials" },
+    { "module": "DB", "level": "FATAL", "message": "Connection lost" },
+    { "module": "AUTH", "level": "INFO", "message": "Login OK" }
+  ]
+}

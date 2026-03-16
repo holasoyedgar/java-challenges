@@ -1,0 +1,8 @@
+{
+  "logs": [
+    null,
+    { "module": null, "level": "ERROR", "message": "msg" },
+    { "module": "UI", "level": null, "message": "msg" },
+    { "module": "UI", "level": "ERROR", "message": null }
+  ]
+}

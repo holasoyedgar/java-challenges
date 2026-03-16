@@ -1,0 +1,6 @@
+{
+  "logs": [
+    { "module": "CORE", "level": "FATAL", "message": "OOM" },
+    { "module": "CORE", "level": "FATAL", "message": "Disk Full" }
+  ]
+}
