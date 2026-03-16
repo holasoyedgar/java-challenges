@@ -19,14 +19,13 @@ public class LegacySubscriptionBillingProcessor {
 
         List<UserBillingSummary> summaries = request.subscriptions()
                 .stream()
-                .filter(subscription -> !subscription.isCancelled())
-                .collect(Collectors.groupingBy(Subscription::userId, Collectors.reducing(
-                        BigDecimal.ZERO,
+                .filter(Subscription::isBillable)
+                .collect(Collectors.toMap(
+                        Subscription::userId,
                         Subscription::calculateMonthlyCharge,
                         BigDecimal::add
-                )))
-                .entrySet()
-                .stream()
+                ))
+                .entrySet().stream()
                 .map(entry -> new UserBillingSummary(entry.getKey(),
                         entry.getValue().setScale(2, RoundingMode.HALF_UP)))
                 .toList();

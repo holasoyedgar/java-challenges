@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public enum Status {
     ACTIVE,
     PAST_DUE,
-    CANCELLED;
+    CANCELED;
 
     private static final Set<String> VALID_STATUSES = Arrays.stream(values())
             .map(Enum::name)
