@@ -5,48 +5,39 @@ import com.example.challenges.metrics.domain.MetricReportRequest;
 import com.example.challenges.metrics.domain.MetricReportResult;
 import com.example.challenges.metrics.domain.RawMetric;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LegacyCloudWatchMetricsProcessor {
+    private static final String OK_STATUS = "OK";
+    private static final String ALARM_STATUS = "ALARM";
+    private static final double ALARM_THRESHOLD = 80.0;
 
     public MetricReportResult processMetrics(MetricReportRequest request) {
-        if (request == null || request.metrics() == null) {
-            return new MetricReportResult(new ArrayList<>());
+        if (request == null || request.metrics().isEmpty()) {
+            return new MetricReportResult(List.of());
         }
 
-        Map<String, List<Double>> groupedMetrics = new HashMap<>();
-
-        for (int i = 0; i < request.metrics().size(); i++) {
-            RawMetric metric = request.metrics().get(i);
-            if (metric != null && metric.name() != null && metric.unit() != null && metric.value() != null) {
-                if (metric.unit().equals("PERCENT") || metric.unit().equals("COUNT")) {
-                    if (!groupedMetrics.containsKey(metric.name())) {
-                        groupedMetrics.put(metric.name(), new ArrayList<>());
-                    }
-                    groupedMetrics.get(metric.name()).add(metric.value());
-                }
-            }
-        }
-
-        List<AggregatedMetric> results = new ArrayList<>();
-        for (Map.Entry<String, List<Double>> entry : groupedMetrics.entrySet()) {
-            double sum = 0;
-            for (Double val : entry.getValue()) {
-                sum += val;
-            }
-            double average = sum / entry.getValue().size();
-
-            String status = "OK";
-            if (average >= 80.0) {
-                status = "ALARM";
-            }
-
-            results.add(new AggregatedMetric(entry.getKey(), average, status));
-        }
+        List<AggregatedMetric> results = request.metrics()
+                .stream()
+                .filter(RawMetric::isValid)
+                .filter(RawMetric::isUnitProcessable)
+                .collect(Collectors.groupingBy(RawMetric::name, Collectors.averagingDouble(RawMetric::value)))
+                .entrySet()
+                .stream()
+                .map(LegacyCloudWatchMetricsProcessor::createAggregatedMetric)
+                .toList();
 
         return new MetricReportResult(results);
+    }
+
+    private static AggregatedMetric createAggregatedMetric(Map.Entry<String, Double> entry) {
+        Double average = entry.getValue();
+        String status = OK_STATUS;
+        if (average >= ALARM_THRESHOLD) {
+            status = ALARM_STATUS;
+        }
+        return new AggregatedMetric(entry.getKey(), average, status);
     }
 }
