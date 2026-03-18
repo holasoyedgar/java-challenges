@@ -13,16 +13,13 @@ import java.util.Map;
 public class GroupStageCalculator {
 
     public TournamentResult calculateStandings(TournamentRequest request) {
-        if (request == null || !request.isValid()) {
-            throw new IllegalArgumentException("Tournament request is invalid");
-        }
-        if (request.areMatchesEmpty()) {
+        if (request == null || request.matches().isEmpty()) {
             return new TournamentResult(List.of());
         }
         Map<String, TeamStanding> standings = new HashMap<>();
         for (MatchResult result : request.matches()) {
-            standings.put(result.homeTeam(), TeamStanding.calculateTeamStanding(standings, result.homeTeam(), result.homeGoals(), result.awayGoals()));
-            standings.put(result.awayTeam(), TeamStanding.calculateTeamStanding(standings, result.awayTeam(), result.awayGoals(), result.homeGoals()));
+            standings.merge(result.homeTeam(), new TeamStanding(result.homeTeam(), result.homeGoals(), result.awayGoals()), TeamStanding::combineWith);
+            standings.merge(result.awayTeam(), new TeamStanding(result.awayTeam(), result.awayGoals(), result.homeGoals()), TeamStanding::combineWith);
         }
 
         Comparator<TeamStanding> comparator = Comparator.comparing(TeamStanding::points)
