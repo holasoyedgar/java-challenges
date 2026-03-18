@@ -1,0 +1,7 @@
+{
+  "metrics": [
+    { "name": "CPUUtilization", "unit": "PERCENT", "value": 50.0 },
+    { "name": "RequestCount", "unit": "COUNT", "value": 10.0 },
+    { "name": "CPUUtilization", "unit": "PERCENT", "value": 60.0 }
+  ]
+}

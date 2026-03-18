@@ -1,0 +1,5 @@
+{
+  "aggregatedMetrics": [
+    { "name": "MemoryUtilization", "average": 90.0, "status": "ALARM" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "metrics": [
+    null,
+    { "name": null, "unit": "PERCENT", "value": 50.0 },
+    { "name": "CPUUtilization", "unit": null, "value": 50.0 },
+    { "name": "CPUUtilization", "unit": "PERCENT", "value": null }
+  ]
+}

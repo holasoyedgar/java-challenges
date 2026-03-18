@@ -1,0 +1,7 @@
+{
+  "metrics": [
+    { "name": "NetworkIn", "unit": "BYTES", "value": 1024.0 },
+    { "name": "DiskReadOps", "unit": "IOPS", "value": 500.0 },
+    { "name": "CPUUtilization", "unit": "PERCENT", "value": 50.0 }
+  ]
+}

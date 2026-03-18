@@ -1,0 +1,6 @@
+{
+  "metrics": [
+    { "name": "MemoryUtilization", "unit": "PERCENT", "value": 85.0 },
+    { "name": "MemoryUtilization", "unit": "PERCENT", "value": 95.0 }
+  ]
+}

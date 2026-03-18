@@ -1,0 +1,6 @@
+{
+  "aggregatedMetrics": [
+    { "name": "CPUUtilization", "average": 55.0, "status": "OK" },
+    { "name": "RequestCount", "average": 10.0, "status": "OK" }
+  ]
+}
