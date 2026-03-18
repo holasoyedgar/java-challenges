@@ -23,7 +23,8 @@ class LegacyCloudWatchMetricsProcessorTest {
                 "02_valid_percent_and_count",
                 "03_alarm_threshold_exceeded",
                 "04_ignored_units",
-                "05_malformed_data_ignored"
+                "05_malformed_data_ignored",
+                "06_null_metrics"
         );
     }
 

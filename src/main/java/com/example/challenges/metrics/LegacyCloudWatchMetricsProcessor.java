@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class LegacyCloudWatchMetricsProcessor {
 
     public MetricReportResult processMetrics(MetricReportRequest request) {
-        if (request == null || request.metrics().isEmpty()) {
+        if (request == null || !request.isValid()) {
             return new MetricReportResult(List.of());
         }
 
