@@ -1,7 +1,7 @@
 {
   "standings": [
     { "teamName": "Lyon", "points": 6, "goalDifference": 3, "goalsScored": 3 },
-    { "teamName": "Ajax", "points": 1, "goalDifference": -2, "goalsScored": 1 },
-    { "teamName": "Porto", "points": 1, "goalDifference": -1, "goalsScored": 1 }
+    { "teamName": "Porto", "points": 1, "goalDifference": -1, "goalsScored": 1 },
+    { "teamName": "Ajax", "points": 1, "goalDifference": -2, "goalsScored": 1 }
   ]
 }

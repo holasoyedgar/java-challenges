@@ -1,7 +1,7 @@
 {
   "standings": [
     { "teamName": "Celtic", "points": 3, "goalDifference": 2, "goalsScored": 4 },
-    { "teamName": "Malmo", "points": 3, "goalDifference": 1, "goalsScored": 2 },
-    { "teamName": "Dinamo", "points": 3, "goalDifference": -3, "goalsScored": 1 }
+    { "teamName": "Malmo", "points": 3, "goalDifference": 0, "goalsScored": 2 },
+    { "teamName": "Dinamo", "points": 3, "goalDifference": -2, "goalsScored": 1 }
   ]
 }
