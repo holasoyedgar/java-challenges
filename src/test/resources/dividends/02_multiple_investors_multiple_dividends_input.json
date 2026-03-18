@@ -1,0 +1,11 @@
+{
+  "positions": [
+    { "investorId": "INV-1", "ticker": "MSFT", "shares": 50, "purchaseDate": "2026-02-01" },
+    { "investorId": "INV-2", "ticker": "MSFT", "shares": 100, "purchaseDate": "2026-02-15" },
+    { "investorId": "INV-1", "ticker": "TSLA", "shares": 10, "purchaseDate": "2026-01-10" }
+  ],
+  "events": [
+    { "ticker": "MSFT", "dividendPerShare": 2.00, "exDividendDate": "2026-03-01" },
+    { "ticker": "TSLA", "dividendPerShare": 5.00, "exDividendDate": "2026-02-01" }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "positions": [
+    { "investorId": "INV-1", "ticker": "AAPL", "shares": 100, "purchaseDate": "2026-03-01" }
+  ],
+  "events": [
+    { "ticker": "AAPL", "dividendPerShare": 0.50, "exDividendDate": "2026-03-15" }
+  ]
+}

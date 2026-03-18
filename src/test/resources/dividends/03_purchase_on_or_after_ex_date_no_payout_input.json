@@ -1,0 +1,9 @@
+{
+  "positions": [
+    { "investorId": "INV-3", "ticker": "GOOG", "shares": 10, "purchaseDate": "2026-03-10" },
+    { "investorId": "INV-4", "ticker": "GOOG", "shares": 20, "purchaseDate": "2026-03-11" }
+  ],
+  "events": [
+    { "ticker": "GOOG", "dividendPerShare": 1.50, "exDividendDate": "2026-03-10" }
+  ]
+}

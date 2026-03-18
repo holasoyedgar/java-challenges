@@ -1,0 +1,6 @@
+{
+  "payouts": [
+    { "investorId": "INV-1", "totalPayout": 150.00 },
+    { "investorId": "INV-2", "totalPayout": 200.00 }
+  ]
+}

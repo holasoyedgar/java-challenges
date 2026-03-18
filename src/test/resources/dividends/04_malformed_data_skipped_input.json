@@ -1,0 +1,11 @@
+{
+  "positions": [
+    null,
+    { "investorId": "INV-5", "ticker": "VTI", "shares": 10, "purchaseDate": "2026-01-01" },
+    { "investorId": null, "ticker": "VTI", "shares": 10, "purchaseDate": "2026-01-01" }
+  ],
+  "events": [
+    { "ticker": "VTI", "dividendPerShare": 1.00, "exDividendDate": "2026-02-01" },
+    null
+  ]
+}
