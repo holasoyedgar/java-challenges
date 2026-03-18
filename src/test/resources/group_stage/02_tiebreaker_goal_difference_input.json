@@ -1,0 +1,7 @@
+{
+  "matches": [
+    { "homeTeam": "Celtic", "awayTeam": "Dinamo", "homeGoals": 3, "awayGoals": 0 },
+    { "homeTeam": "Dinamo", "awayTeam": "Malmo", "homeGoals": 1, "awayGoals": 0 },
+    { "homeTeam": "Malmo", "awayTeam": "Celtic", "homeGoals": 2, "awayGoals": 1 }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "matches": [
+    { "homeTeam": "Sparta", "awayTeam": "Slavia", "homeGoals": 1, "awayGoals": 1 },
+    { "homeTeam": "Slavia", "awayTeam": "Anderlecht", "homeGoals": 0, "awayGoals": 0 },
+    { "homeTeam": "Anderlecht", "awayTeam": "Sparta", "homeGoals": 0, "awayGoals": 0 }
+  ]
+}

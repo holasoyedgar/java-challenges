@@ -1,0 +1,7 @@
+{
+  "matches": [
+    { "homeTeam": "Lyon", "awayTeam": "Ajax", "homeGoals": 2, "awayGoals": 0 },
+    { "homeTeam": "Ajax", "awayTeam": "Porto", "homeGoals": 1, "awayGoals": 1 },
+    { "homeTeam": "Porto", "awayTeam": "Lyon", "homeGoals": 0, "awayGoals": 1 }
+  ]
+}

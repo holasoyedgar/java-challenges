@@ -1,0 +1,7 @@
+{
+  "standings": [
+    { "teamName": "Anderlecht", "points": 2, "goalDifference": 0, "goalsScored": 0 },
+    { "teamName": "Slavia", "points": 2, "goalDifference": 0, "goalsScored": 1 },
+    { "teamName": "Sparta", "points": 2, "goalDifference": 0, "goalsScored": 1 }
+  ]
+}

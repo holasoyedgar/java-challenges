@@ -1,0 +1,7 @@
+{
+  "standings": [
+    { "teamName": "PSV", "points": 3, "goalDifference": 0, "goalsScored": 3 },
+    { "teamName": "Benfica", "points": 3, "goalDifference": 0, "goalsScored": 2 },
+    { "teamName": "Rangers", "points": 3, "goalDifference": 0, "goalsScored": 2 }
+  ]
+}
