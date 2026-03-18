@@ -4,17 +4,6 @@ import com.example.challenges.football.enumeration.Result;
 
 public record TeamStanding(String teamName, int points, int goalDifference, int goalsScored) {
 
-    public TeamStanding(String teamName, int goalsFor, int goalsAgainst) {
-        this(teamName, calculateTeamResult(goalsFor, goalsAgainst), goalsFor - goalsAgainst, goalsFor);
-    }
-
-    public TeamStanding combineWith(TeamStanding other) {
-        return new TeamStanding(teamName,
-                points + other.points,
-                goalDifference + other.goalDifference,
-                goalsScored + other.goalsScored);
-    }
-
     public static int calculateTeamResult(int goalsFor, int goalsAgainst) {
         if (goalsFor > goalsAgainst) {
             return Result.WIN.getPoints();
@@ -22,5 +11,12 @@ public record TeamStanding(String teamName, int points, int goalDifference, int 
             return Result.DRAW.getPoints();
         }
         return Result.LOSE.getPoints();
+    }
+
+    public TeamStanding withMatchResult(int goalsFor, int goalsAgainst) {
+        return new TeamStanding(teamName,
+                points + calculateTeamResult(goalsFor, goalsAgainst),
+                goalDifference + (goalsFor - goalsAgainst),
+                goalsScored + goalsFor);
     }
 }

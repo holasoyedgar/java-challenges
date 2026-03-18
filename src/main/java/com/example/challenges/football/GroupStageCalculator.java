@@ -16,11 +16,7 @@ public class GroupStageCalculator {
         if (request == null || request.matches().isEmpty()) {
             return new TournamentResult(List.of());
         }
-        Map<String, TeamStanding> standings = new HashMap<>();
-        for (MatchResult result : request.matches()) {
-            standings.merge(result.homeTeam(), new TeamStanding(result.homeTeam(), result.homeGoals(), result.awayGoals()), TeamStanding::combineWith);
-            standings.merge(result.awayTeam(), new TeamStanding(result.awayTeam(), result.awayGoals(), result.homeGoals()), TeamStanding::combineWith);
-        }
+        Map<String, TeamStanding> standings = getTeamStandings(request);
 
         Comparator<TeamStanding> comparator = Comparator.comparing(TeamStanding::points)
                 .thenComparing(TeamStanding::goalDifference)
@@ -34,5 +30,19 @@ public class GroupStageCalculator {
                 .toList();
 
         return new TournamentResult(sortedStandings);
+    }
+
+    private static Map<String, TeamStanding> getTeamStandings(TournamentRequest request) {
+        Map<String, TeamStanding> standings = new HashMap<>();
+        for (MatchResult result : request.matches()) {
+            standings.compute(result.homeTeam(),
+                    (teamName, standing) -> (standing == null ? new TeamStanding(teamName, 0, 0, 0) : standing)
+                                    .withMatchResult(result.homeGoals(), result.awayGoals()));
+
+            standings.compute(result.awayTeam(),
+                    (teamName, standing) -> (standing == null ? new TeamStanding(teamName, 0, 0, 0) : standing)
+                            .withMatchResult(result.awayGoals(), result.homeGoals()));
+        }
+        return standings;
     }
 }
