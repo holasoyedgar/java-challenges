@@ -19,9 +19,9 @@ class LegacyCapitalGainsCalculatorTest {
             TaxRequest.class,
             TaxResult.class,
             input -> new LegacyCapitalGainsCalculator(List.of(
+                    new HoldingPeriodTaxRule(HoldingPeriod.SHORT_TERM.name(), new BigDecimal("0.2")),
                     new ExemptTaxRule(),
-                    new HoldingPeriodTaxRule(HoldingPeriod.LONG_TERM.name(), new BigDecimal("0.1")),
-                    new HoldingPeriodTaxRule(HoldingPeriod.SHORT_TERM.name(), new BigDecimal("0.2"))
+                    new HoldingPeriodTaxRule(HoldingPeriod.LONG_TERM.name(), new BigDecimal("0.1"))
             )).calculateTaxes(input)
     );
 

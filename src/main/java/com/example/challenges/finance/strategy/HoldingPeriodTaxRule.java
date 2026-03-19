@@ -19,6 +19,7 @@ public class HoldingPeriodTaxRule implements TaxRule {
 
     @Override
     public boolean isApplicable(StockTrade trade) {
-        return trade.holdingPeriod().equals(holdingPeriod);
+        return trade.holdingPeriod().equals(holdingPeriod) &&
+                trade.calculateProfit().compareTo(BigDecimal.ZERO) > 0;
     }
 }
