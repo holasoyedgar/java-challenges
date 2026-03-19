@@ -2,8 +2,9 @@ package com.example.challenges.finance;
 
 import com.example.challenges.finance.domain.StockTrade;
 import com.example.challenges.finance.domain.TaxReportItem;
-import com.example.challenges.finance.domain.TaxRequest;
+import com.example.challenges.finance.domain.TaxRequestDto;
 import com.example.challenges.finance.domain.TaxResult;
+import com.example.challenges.finance.mapper.StockTradeMapper;
 import com.example.challenges.finance.strategy.TaxRule;
 
 import java.math.BigDecimal;
@@ -19,13 +20,14 @@ public class LegacyCapitalGainsCalculator {
         this.taxRules = taxRules;
     }
 
-    public TaxResult calculateTaxes(TaxRequest request) {
+    public TaxResult calculateTaxes(TaxRequestDto request) {
         if (request == null || request.trades().isEmpty()) {
             return new TaxResult(List.of());
         }
 
         List<TaxReportItem> taxReport = request.trades()
                 .stream()
+                .map(StockTradeMapper::toDomain)
                 .filter(trade -> {
                     if (trade == null || !trade.isValid()) {
                         System.out.println("Alert: Invalid trade");

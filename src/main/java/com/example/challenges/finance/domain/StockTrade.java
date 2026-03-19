@@ -1,10 +1,10 @@
 package com.example.challenges.finance.domain;
 
-import com.example.challenges.finance.HoldingPeriod;
+import com.example.challenges.finance.enumeration.HoldingPeriod;
 
 import java.math.BigDecimal;
 
-public record StockTrade(String ticker, BigDecimal buyPrice, BigDecimal sellPrice, Integer quantity, String holdingPeriod) {
+public record StockTrade(String ticker, BigDecimal buyPrice, BigDecimal sellPrice, Integer quantity, HoldingPeriod holdingPeriod) {
     public boolean isValid() {
         return ticker != null &&
                 buyPrice != null &&
@@ -13,7 +13,7 @@ public record StockTrade(String ticker, BigDecimal buyPrice, BigDecimal sellPric
                 sellPrice.compareTo(BigDecimal.ZERO) > 0 &&
                 quantity != null &&
                 quantity > 0 &&
-                HoldingPeriod.isValid(holdingPeriod);
+                holdingPeriod != null;
     }
 
     public BigDecimal calculateProfit() {

@@ -1,7 +1,8 @@
 package com.example.challenges.finance;
 
-import com.example.challenges.finance.domain.TaxRequest;
+import com.example.challenges.finance.domain.TaxRequestDto;
 import com.example.challenges.finance.domain.TaxResult;
+import com.example.challenges.finance.enumeration.HoldingPeriod;
 import com.example.challenges.finance.strategy.ExemptTaxRule;
 import com.example.challenges.finance.strategy.HoldingPeriodTaxRule;
 import com.example.util.ChallengeTestRunner;
@@ -14,14 +15,14 @@ import java.util.stream.Stream;
 
 class LegacyCapitalGainsCalculatorTest {
 
-    private final ChallengeTestRunner<TaxRequest, TaxResult> runner = new ChallengeTestRunner<>(
+    private final ChallengeTestRunner<TaxRequestDto, TaxResult> runner = new ChallengeTestRunner<>(
             "capital_gains",
-            TaxRequest.class,
+            TaxRequestDto.class,
             TaxResult.class,
             input -> new LegacyCapitalGainsCalculator(List.of(
-                    new HoldingPeriodTaxRule(HoldingPeriod.SHORT_TERM.name(), new BigDecimal("0.2")),
+                    new HoldingPeriodTaxRule(HoldingPeriod.SHORT_TERM, new BigDecimal("0.2")),
                     new ExemptTaxRule(),
-                    new HoldingPeriodTaxRule(HoldingPeriod.LONG_TERM.name(), new BigDecimal("0.1"))
+                    new HoldingPeriodTaxRule(HoldingPeriod.LONG_TERM, new BigDecimal("0.1"))
             )).calculateTaxes(input)
     );
 

@@ -1,14 +1,15 @@
 package com.example.challenges.finance.strategy;
 
 import com.example.challenges.finance.domain.StockTrade;
+import com.example.challenges.finance.enumeration.HoldingPeriod;
 
 import java.math.BigDecimal;
 
 public class HoldingPeriodTaxRule implements TaxRule {
-    private final String holdingPeriod;
+    private final HoldingPeriod holdingPeriod;
     private final BigDecimal taxRate;
 
-    public HoldingPeriodTaxRule(String holdingPeriod, BigDecimal taxRate) {
+    public HoldingPeriodTaxRule(HoldingPeriod holdingPeriod, BigDecimal taxRate) {
         this.holdingPeriod = holdingPeriod;
         this.taxRate = taxRate;
     }
