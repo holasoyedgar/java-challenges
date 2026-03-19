@@ -20,7 +20,7 @@ public class LegacyCapitalGainsCalculator {
     }
 
     public TaxResult calculateTaxes(TaxRequest request) {
-        if (request == null || !request.hasTrades()) {
+        if (request == null || request.trades().isEmpty()) {
             return new TaxResult(List.of());
         }
 
