@@ -1,0 +1,5 @@
+{
+  "summaries": [
+    { "passengerId": "P-001", "totalMiles": 9500, "tierStatus": "BRONZE" }
+  ]
+}

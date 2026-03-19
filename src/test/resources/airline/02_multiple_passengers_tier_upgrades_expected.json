@@ -1,0 +1,7 @@
+{
+  "summaries": [
+    { "passengerId": "P-003", "totalMiles": 120000, "tierStatus": "PLATINUM" },
+    { "passengerId": "P-004", "totalMiles": 65000, "tierStatus": "GOLD" },
+    { "passengerId": "P-002", "totalMiles": 22500, "tierStatus": "SILVER" }
+  ]
+}

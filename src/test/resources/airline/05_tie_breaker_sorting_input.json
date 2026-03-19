@@ -1,0 +1,7 @@
+{
+  "flights": [
+    { "passengerId": "Zebra", "flightNumber": "UA401", "distance": 10000, "cabinClass": "ECONOMY" },
+    { "passengerId": "Alpha", "flightNumber": "UA402", "distance": 5000, "cabinClass": "FIRST" },
+    { "passengerId": "Gamma", "flightNumber": "UA403", "distance": 10000, "cabinClass": "ECONOMY" }
+  ]
+}

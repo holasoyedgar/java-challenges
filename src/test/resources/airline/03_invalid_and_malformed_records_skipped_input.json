@@ -1,0 +1,8 @@
+{
+  "flights": [
+    null,
+    { "passengerId": "P-005", "flightNumber": "DL301", "distance": -500, "cabinClass": "ECONOMY" },
+    { "passengerId": "P-005", "flightNumber": "DL302", "distance": 12000, "cabinClass": "SPACE_CLASS" },
+    { "passengerId": "P-005", "flightNumber": "DL303", "distance": 8000, "cabinClass": "FIRST" }
+  ]
+}

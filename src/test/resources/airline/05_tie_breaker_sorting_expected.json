@@ -1,0 +1,7 @@
+{
+  "summaries": [
+    { "passengerId": "Alpha", "totalMiles": 10000, "tierStatus": "SILVER" },
+    { "passengerId": "Gamma", "totalMiles": 10000, "tierStatus": "SILVER" },
+    { "passengerId": "Zebra", "totalMiles": 10000, "tierStatus": "SILVER" }
+  ]
+}

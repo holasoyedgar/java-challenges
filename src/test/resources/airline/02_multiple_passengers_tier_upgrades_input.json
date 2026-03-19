@@ -1,0 +1,7 @@
+{
+  "flights": [
+    { "passengerId": "P-003", "flightNumber": "BA202", "distance": 60000, "cabinClass": "FIRST" },
+    { "passengerId": "P-002", "flightNumber": "BA203", "distance": 15000, "cabinClass": "BUSINESS" },
+    { "passengerId": "P-004", "flightNumber": "BA204", "distance": 65000, "cabinClass": "ECONOMY" }
+  ]
+}
