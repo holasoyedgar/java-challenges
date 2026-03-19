@@ -1,4 +1,4 @@
-package com.example.challenges.finance;
+package com.example.challenges.finance.enumeration;
 
 import java.util.Arrays;
 import java.util.Set;
