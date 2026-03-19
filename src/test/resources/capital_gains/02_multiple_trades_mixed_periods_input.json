@@ -1,0 +1,7 @@
+{
+  "trades": [
+    { "ticker": "AAPL", "buyPrice": 150.0, "sellPrice": 200.0, "quantity": 5, "holdingPeriod": "SHORT_TERM" },
+    { "ticker": "AAPL", "buyPrice": 160.0, "sellPrice": 180.0, "quantity": 10, "holdingPeriod": "LONG_TERM" },
+    { "ticker": "TSLA", "buyPrice": 250.0, "sellPrice": 200.0, "quantity": 2, "holdingPeriod": "SHORT_TERM" }
+  ]
+}

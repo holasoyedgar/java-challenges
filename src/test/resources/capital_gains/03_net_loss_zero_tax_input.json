@@ -1,0 +1,5 @@
+{
+  "trades": [
+    { "ticker": "AMZN", "buyPrice": 150.0, "sellPrice": 140.0, "quantity": 10, "holdingPeriod": "LONG_TERM" }
+  ]
+}

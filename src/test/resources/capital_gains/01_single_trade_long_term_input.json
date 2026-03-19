@@ -1,0 +1,5 @@
+{
+  "trades": [
+    { "ticker": "VOO", "buyPrice": 400.0, "sellPrice": 450.0, "quantity": 10, "holdingPeriod": "LONG_TERM" }
+  ]
+}

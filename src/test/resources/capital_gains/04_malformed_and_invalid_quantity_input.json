@@ -1,0 +1,8 @@
+{
+  "trades": [
+    null,
+    { "ticker": "NVDA", "buyPrice": 400.0, "sellPrice": 500.0, "quantity": -5, "holdingPeriod": "LONG_TERM" },
+    { "ticker": null, "buyPrice": 100.0, "sellPrice": 120.0, "quantity": 10, "holdingPeriod": "SHORT_TERM" },
+    { "ticker": "MSFT", "buyPrice": 300.0, "sellPrice": 350.0, "quantity": 10, "holdingPeriod": "LONG_TERM" }
+  ]
+}
