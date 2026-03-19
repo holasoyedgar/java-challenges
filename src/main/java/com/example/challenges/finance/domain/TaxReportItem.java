@@ -1,3 +1,5 @@
 package com.example.challenges.finance.domain;
 
-public record TaxReportItem(String ticker, Double totalTax) {}
+import java.math.BigDecimal;
+
+public record TaxReportItem(String ticker, BigDecimal totalTax) {}

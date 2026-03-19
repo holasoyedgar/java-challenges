@@ -2,10 +2,14 @@ package com.example.challenges.finance;
 
 import com.example.challenges.finance.domain.TaxRequest;
 import com.example.challenges.finance.domain.TaxResult;
+import com.example.challenges.finance.strategy.ExemptTaxRule;
+import com.example.challenges.finance.strategy.HoldingPeriodTaxRule;
 import com.example.util.ChallengeTestRunner;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.stream.Stream;
 
 class LegacyCapitalGainsCalculatorTest {
@@ -14,7 +18,11 @@ class LegacyCapitalGainsCalculatorTest {
             "capital_gains",
             TaxRequest.class,
             TaxResult.class,
-            input -> new LegacyCapitalGainsCalculator().calculateTaxes(input)
+            input -> new LegacyCapitalGainsCalculator(List.of(
+                    new ExemptTaxRule(),
+                    new HoldingPeriodTaxRule(HoldingPeriod.LONG_TERM.name(), new BigDecimal("0.1")),
+                    new HoldingPeriodTaxRule(HoldingPeriod.SHORT_TERM.name(), new BigDecimal("0.2"))
+            )).calculateTaxes(input)
     );
 
     static Stream<String> testCaseProvider() {

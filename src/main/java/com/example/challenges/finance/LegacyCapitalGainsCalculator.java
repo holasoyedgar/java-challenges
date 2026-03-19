@@ -4,59 +4,54 @@ import com.example.challenges.finance.domain.StockTrade;
 import com.example.challenges.finance.domain.TaxReportItem;
 import com.example.challenges.finance.domain.TaxRequest;
 import com.example.challenges.finance.domain.TaxResult;
+import com.example.challenges.finance.strategy.TaxRule;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LegacyCapitalGainsCalculator {
 
+    private final List<TaxRule> taxRules;
+    public LegacyCapitalGainsCalculator(List<TaxRule> taxRules) {
+        this.taxRules = taxRules;
+    }
+
     public TaxResult calculateTaxes(TaxRequest request) {
-        if (request == null || request.trades() == null) {
-            return new TaxResult(new ArrayList<>());
+        if (request == null || !request.hasTrades()) {
+            return new TaxResult(List.of());
         }
 
-        Map<String, Double> taxesByTicker = new HashMap<>();
-
-        for (int i = 0; i < request.trades().size(); i++) {
-            StockTrade trade = request.trades().get(i);
-            if (trade != null && trade.ticker() != null && trade.buyPrice() != null
-                    && trade.sellPrice() != null && trade.quantity() != null && trade.holdingPeriod() != null) {
-
-                if (trade.quantity() > 0) {
-                    double profit = (trade.sellPrice() - trade.buyPrice()) * trade.quantity();
-                    
-                    if (profit > 0) {
-                        double tax = 0.0;
-                        if (trade.holdingPeriod().equals("LONG_TERM")) {
-                            tax = profit * 0.10;
-                        } else if (trade.holdingPeriod().equals("SHORT_TERM")) {
-                            tax = profit * 0.20;
-                        }
-
-                        if (taxesByTicker.containsKey(trade.ticker())) {
-                            taxesByTicker.put(trade.ticker(), taxesByTicker.get(trade.ticker()) + tax);
-                        } else {
-                            taxesByTicker.put(trade.ticker(), tax);
-                        }
-                    } else {
-                        if (!taxesByTicker.containsKey(trade.ticker())) {
-                            taxesByTicker.put(trade.ticker(), 0.0);
-                        }
+        List<TaxReportItem> taxReport = request.trades()
+                .stream()
+                .filter(trade -> {
+                    if (trade == null || !trade.isValid()) {
+                        System.out.println("Alert: Invalid trade");
+                        return false;
                     }
-                }
-            }
-        }
+                    return true;
+                })
+                .collect(Collectors.toMap(StockTrade::ticker,
+                        this::calculateTax,
+                        BigDecimal::add))
+                .entrySet().stream()
+                .map(entry -> {
+                    BigDecimal roundedTax = entry.getValue().setScale(2, RoundingMode.HALF_UP);
+                    return new TaxReportItem(entry.getKey(), roundedTax);
+                })
+                .sorted(Comparator.comparing(TaxReportItem::ticker))
+                .toList();
 
-        List<TaxReportItem> results = new ArrayList<>();
-        for (Map.Entry<String, Double> entry : taxesByTicker.entrySet()) {
-            double roundedTax = Math.round(entry.getValue() * 100.0) / 100.0;
-            results.add(new TaxReportItem(entry.getKey(), roundedTax));
-        }
+        return new TaxResult(taxReport);
+    }
 
-        results.sort((a, b) -> a.ticker().compareTo(b.ticker()));
-
-        return new TaxResult(results);
+    public BigDecimal calculateTax(StockTrade trade) {
+        return this.taxRules.stream()
+                .filter(rule -> rule.isApplicable(trade))
+                .findFirst()
+                .map(rule -> rule.calculate(trade))
+                .orElse(BigDecimal.ZERO);
     }
 }

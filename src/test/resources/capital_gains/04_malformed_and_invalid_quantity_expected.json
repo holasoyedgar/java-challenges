@@ -1,5 +1,5 @@
 {
   "report": [
-    { "ticker": "MSFT", "totalTax": 50.0 }
+    { "ticker": "MSFT", "totalTax": 50.00 }
   ]
 }

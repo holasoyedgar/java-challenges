@@ -1,5 +1,5 @@
 {
   "report": [
-    { "ticker": "VOO", "totalTax": 50.0 }
+    { "ticker": "VOO", "totalTax": 50.00 }
   ]
 }

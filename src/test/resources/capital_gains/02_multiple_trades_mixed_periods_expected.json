@@ -1,6 +1,6 @@
 {
   "report": [
-    { "ticker": "AAPL", "totalTax": 70.0 },
-    { "ticker": "TSLA", "totalTax": 0.0 }
+    { "ticker": "AAPL", "totalTax": 70.00 },
+    { "ticker": "TSLA", "totalTax": 0.00 }
   ]
 }
