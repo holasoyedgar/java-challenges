@@ -24,10 +24,13 @@ public class FrequentFlyerEngine {
         List<PassengerSummary> passengerSummaries = request.flights()
                 .stream()
                 .map(FlightRecordMapper::toDomain)
-                .filter(record -> record != null && record.isValid())
-                .collect(Collectors.toMap(FlightRecord::passengerId, record -> record.cabinClass().calculateQualifyingMiles(record.distance()), Integer::sum))
+                .filter(record -> record != null && record.isValid()) // Filtering invalid records.
+                .collect(Collectors.toMap(FlightRecord::passengerId,
+                        record -> record.cabinClass().calculateQualifyingMiles(record.distance()),
+                        Integer::sum))
                 .entrySet().stream()
-                .map(entry -> new PassengerSummary(entry.getKey(), entry.getValue(), Tier.fromMiles(entry.getValue())))
+                .map(entry ->
+                        new PassengerSummary(entry.getKey(), entry.getValue(), Tier.fromMiles(entry.getValue())))
                 .sorted(passengerSummaryComparator)
                 .toList();
 
