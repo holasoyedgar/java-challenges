@@ -14,11 +14,13 @@ public enum Tier {
         this.maximumRange = maximumRange;
     }
 
-    public Integer getMinimumRange() {
-        return minimumRange;
-    }
+    public static Tier fromMiles(int miles) {
+        for (Tier tier : values()) {
+            if (miles >= tier.minimumRange && miles <= tier.maximumRange) {
+                return tier;
+            }
+        }
 
-    public Integer getMaximumRange() {
-        return maximumRange;
+        throw new IllegalArgumentException("Miles out of range");
     }
 }

@@ -11,7 +11,7 @@ public enum CabinClass {
         this.rate = rate;
     }
 
-    public double getRate() {
-        return rate;
+    public int calculateQualifyingMiles(Integer distance) {
+        return (int) (distance * rate);
     }
 }
