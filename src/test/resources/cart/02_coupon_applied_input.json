@@ -1,0 +1,6 @@
+{
+  "items": [
+    { "name": "Apples", "price": 10, "quantity": 10, "type": "GROCERIES" }
+  ],
+  "couponCode": "SAVE20"
+}

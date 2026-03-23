@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "name": "Laptop", "price": 1200, "quantity": 1, "type": "ELECTRONICS" },
+    { "name": "T-Shirt", "price": 100, "quantity": 2, "type": "CLOTHING" }
+  ],
+  "couponCode": null
+}

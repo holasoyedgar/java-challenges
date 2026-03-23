@@ -1,0 +1,10 @@
+{
+  "items": [
+    null,
+    { "name": "Error Item 1", "price": -10, "quantity": 1, "type": "ELECTRONICS" },
+    { "name": "Error Item 2", "price": 50, "quantity": 0, "type": "GROCERIES" },
+    { "name": "Error Item 3", "price": 50, "quantity": 1, "type": null },
+    { "name": "Jeans", "price": 50, "quantity": 1, "type": "CLOTHING" }
+  ],
+  "couponCode": null
+}

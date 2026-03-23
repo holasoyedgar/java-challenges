@@ -1,0 +1,7 @@
+{
+  "items": [
+    { "name": "Smartphone", "price": 1000, "quantity": 1, "type": "ELECTRONICS" },
+    { "name": "Bananas", "price": 20, "quantity": 5, "type": "GROCERIES" }
+  ],
+  "couponCode": "SAVE20"
+}
