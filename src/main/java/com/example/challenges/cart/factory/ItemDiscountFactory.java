@@ -7,7 +7,7 @@ import java.util.Map;
 public class ItemDiscountFactory {
     private static final Map<String, ItemDiscountStrategy> STRATEGIES = Map.of("ELECTRONICS", new ElectronicsDiscountStrategy(),
             "GROCERIES", new GroceriesDiscountStrategy(),
-            "CLOTHING", new ClothingDiscountStrategy());;
+            "CLOTHING", new ClothingDiscountStrategy());
 
 
     public static ItemDiscountStrategy getStrategy(String itemType) {
