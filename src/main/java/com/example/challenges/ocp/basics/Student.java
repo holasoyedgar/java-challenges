@@ -2,18 +2,20 @@ package com.example.challenges.ocp.basics;
 
 // Top level class
 public class Student {
-    String name;
+    private String name = "John";
 
-    public String getName() {
-        return name;
+    public Student() {
+        name = "Teddy";
+        System.out.println("Constructor of Student");
     }
-    // A comment.
-    /*
-    Hello.
-     */
-    /**
-    * A Javadoc*/
-    public void setName(String name) {
-        this.name = name;
+
+    {
+        System.out.println(name);
+        System.out.println("Initializer block");
+    }
+
+    public static void main(String[] args) {
+        Student student = new Student();
+        System.out.println(student.name);
     }
 }
