@@ -1,24 +1,29 @@
 package com.example.challenges.ocp.classdesign;
 
 public class Dog extends Mammal {
-    private final String name;
-
-    public Dog(String name, int age) {
-        super(age); // Use of 'super()'.
-        this.name = name;
+    private String name = "Mike";
+    {
+        System.out.println(name);
     }
-
-    public Dog() {
-        this("Chip", 3); // Usage of 'this()'. It must be at the first line of the constructor.
-        System.out.println("Woof!");
+    private static int i = 0;
+    static {
+        System.out.println("static initializer i: " + i);
     }
-
-    public void bark() {
-        System.out.printf("Dog %s (%d) says: woof!%n", name, getAge());
+    {
+        i++;
+        System.out.println("instance initializer i: " + i);
     }
-
+    Dog() {
+        System.out.println("Dog's constructor");
+    }
     public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.bark();
+        System.out.println("Dog's main method");
+        new Dog();
+        new Dog();
+        new Dog();
+    }
+
+    static {
+        System.out.println("Dog's static method.");
     }
 }
