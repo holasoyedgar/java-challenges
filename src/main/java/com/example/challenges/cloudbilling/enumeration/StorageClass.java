@@ -1,7 +1,6 @@
 package com.example.challenges.cloudbilling.enumeration;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Optional;
 
 public enum StorageClass {
@@ -19,20 +18,24 @@ public enum StorageClass {
     }
 
     public static Optional<StorageClass> fromTier(String tier) {
-        return Arrays.stream(StorageClass.values())
-                .filter(storageClass -> storageClass.name().equals(tier))
-                .findFirst();
+        return Optional.of(StorageClass.valueOf(tier.toUpperCase()));
     }
 
-    public BigDecimal getStorageCost() {
-        return storageCost;
+    public BigDecimal calculateStorageCost(int sizeGb, int storageDays) {
+        return storageCost
+                .multiply(BigDecimal.valueOf(sizeGb))
+                .multiply(BigDecimal.valueOf(storageDays));
     }
 
-    public BigDecimal getRetrievalCost() {
-        return retrievalCost;
+    public BigDecimal calculateRetrievalCost(int retrievedGb) {
+        return retrievalCost
+                .multiply(BigDecimal.valueOf(retrievedGb));
     }
 
-    public int getEarlyDeletionPenaltyDays() {
-        return earlyDeletionPenaltyDays;
+    public BigDecimal calculateEarlyDeletionPenalty(int storageDays, int sizeGb) {
+        int missingDays = Math.max(0, earlyDeletionPenaltyDays - storageDays);
+        return BigDecimal.valueOf(missingDays)
+                .multiply(BigDecimal.valueOf(sizeGb))
+                .multiply(storageCost);
     }
 }
