@@ -8,24 +8,17 @@ public record TeamStanding(
         int goalDifference,
         int goalsScored
 ) {
-    public static TeamStanding defaultTeamStanding(String teamName) {
-        return new TeamStanding(teamName, 0, 0, 0);
-    }
-
-    public TeamStanding withResult(int goalsFor, int goalsAgainst) {
+    public static TeamStanding fromResult(String teamName, int goalsFor, int goalsAgainst) {
         return new TeamStanding(teamName,
-                points + calculateTeamResult(goalsFor, goalsAgainst).getAwardedPoints(),
-                goalDifference + (goalsFor - goalsAgainst),
-                goalsScored + goalsFor);
+                Result.fromGoals(goalsFor, goalsAgainst).getAwardedPoints(),
+                goalsFor - goalsAgainst,
+                goalsFor);
     }
 
-    public Result calculateTeamResult(int goalsFor, int goalsAgainst) {
-        if (goalsFor > goalsAgainst) {
-            return Result.WIN;
-        }
-        if (goalsFor == goalsAgainst) {
-            return Result.DRAW;
-        }
-        return Result.LOSE;
+    public TeamStanding merge(TeamStanding other) {
+        return new TeamStanding(teamName,
+                points + other.points,
+                goalDifference + other.goalDifference,
+                goalsScored + other.goalsScored);
     }
 }

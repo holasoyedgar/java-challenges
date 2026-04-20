@@ -11,4 +11,14 @@ public enum Result {
     public int getAwardedPoints() {
         return awardedPoints;
     }
+
+    public static Result fromGoals(int goalsFor, int goalsAgainst) {
+        if (goalsFor > goalsAgainst) {
+            return WIN;
+        }
+        if (goalsFor == goalsAgainst) {
+            return DRAW;
+        }
+        return LOSE;
+    }
 }
