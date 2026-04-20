@@ -1,0 +1,7 @@
+{
+  "bucketId": "backups-db-2026",
+  "storageCost": 100.00,
+  "retrievalCost": 0.50,
+  "earlyDeletionPenalty": 0.00,
+  "totalCost": 100.50
+}

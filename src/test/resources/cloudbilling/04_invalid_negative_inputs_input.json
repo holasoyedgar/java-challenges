@@ -1,0 +1,7 @@
+{
+  "bucketId": "error-bucket",
+  "tier": "STANDARD",
+  "sizeGb": 100,
+  "storageDays": -5,
+  "retrievedGb": 0
+}

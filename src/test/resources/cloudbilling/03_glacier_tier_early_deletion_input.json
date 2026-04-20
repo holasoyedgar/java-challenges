@@ -1,0 +1,7 @@
+{
+  "bucketId": "logs-temp-archive",
+  "tier": "GLACIER",
+  "sizeGb": 1000,
+  "storageDays": 30,
+  "retrievedGb": 10
+}

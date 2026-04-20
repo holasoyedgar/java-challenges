@@ -1,0 +1,7 @@
+{
+  "bucketId": "assets-prod-1",
+  "tier": "STANDARD",
+  "sizeGb": 1000,
+  "storageDays": 30,
+  "retrievedGb": 100
+}

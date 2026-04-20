@@ -1,0 +1,7 @@
+{
+  "bucketId": "backups-db-2026",
+  "tier": "GLACIER",
+  "sizeGb": 5000,
+  "storageDays": 100,
+  "retrievedGb": 50
+}

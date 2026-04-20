@@ -1,0 +1,7 @@
+{
+  "bucketId": "logs-temp-archive",
+  "storageCost": 6.00,
+  "retrievalCost": 0.10,
+  "earlyDeletionPenalty": 12.00,
+  "totalCost": 18.10
+}

@@ -1,0 +1,7 @@
+{
+  "bucketId": "legal-compliance-2025",
+  "tier": "GLACIER",
+  "sizeGb": 10000,
+  "storageDays": 90,
+  "retrievedGb": 0
+}
