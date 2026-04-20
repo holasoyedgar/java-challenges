@@ -1,0 +1,6 @@
+{
+  "matches": [
+    {"homeTeam": "Real Madrid", "awayTeam": "Milan", "homeGoals": 3, "awayGoals": 1},
+    {"homeTeam": "Milan", "awayTeam": "Real Madrid", "homeGoals": 1, "awayGoals": 1}
+  ]
+}

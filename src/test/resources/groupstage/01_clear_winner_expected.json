@@ -1,0 +1,6 @@
+{
+  "standings": [
+    {"teamName": "Real Madrid", "points": 4, "goalDifference": 2, "goalsScored": 4},
+    {"teamName": "Milan", "points": 1, "goalDifference": -2, "goalsScored": 2}
+  ]
+}

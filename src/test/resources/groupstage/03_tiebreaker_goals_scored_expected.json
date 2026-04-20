@@ -1,0 +1,7 @@
+{
+  "standings": [
+    {"teamName": "Juventus", "points": 4, "goalDifference": 1, "goalsScored": 3},
+    {"teamName": "Chelsea", "points": 4, "goalDifference": 1, "goalsScored": 1},
+    {"teamName": "Porto", "points": 0, "goalDifference": -2, "goalsScored": 2}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "matches": [
+    {"homeTeam": "Bayern", "awayTeam": "Arsenal", "homeGoals": 3, "awayGoals": 0},
+    {"homeTeam": "Arsenal", "awayTeam": "Bayern", "homeGoals": 1, "awayGoals": 0}
+  ]
+}
