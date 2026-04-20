@@ -6,4 +6,12 @@ public record CloudBillingRequest(
         int sizeGb,
         int storageDays,
         int retrievedGb
-) {}
+) {
+    public boolean isValid() {
+        return bucketId != null && !bucketId.isBlank() &&
+                tier != null && !tier.isBlank() &&
+                sizeGb >= 0 &&
+                storageDays >= 0 &&
+                retrievedGb >= 0;
+    }
+}
