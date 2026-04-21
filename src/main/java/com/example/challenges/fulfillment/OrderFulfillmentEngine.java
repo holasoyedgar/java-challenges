@@ -9,10 +9,9 @@ import java.util.*;
 public class OrderFulfillmentEngine {
 
     public FulfillmentReceipt processOrder(FulfillmentRequest request) {
-        Queue<Warehouse> orderedWarehouses = new PriorityQueue<>(Comparator.comparingInt(Warehouse::distance));
-        for (Warehouse warehouse : request.warehouses()) {
-            orderedWarehouses.offer(warehouse);
-        }
+        List<Warehouse> orderedWarehouses = request.warehouses()
+                .stream().sorted(Comparator.comparing(Warehouse::distance))
+                .toList();
 
         Map<String, List<OrderItem>> fulfilledItemsPerWarehouse = new HashMap<>();
         List<OrderItem> unfulfilledItems = new ArrayList<>();
@@ -42,7 +41,6 @@ public class OrderFulfillmentEngine {
                                     .add(BigDecimal.TEN);
                             fulfilledItemsPerWarehouse.put(warehouse.id(), new ArrayList<>(List.of(new OrderItem(orderItem.productId(), fulfilledQuantity))));
                         }
-
                         totalShippingCost = totalShippingCost
                                 .add(BigDecimal.TWO.multiply(BigDecimal.valueOf(fulfilledQuantity)))
                                 .setScale(2, RoundingMode.HALF_UP);
