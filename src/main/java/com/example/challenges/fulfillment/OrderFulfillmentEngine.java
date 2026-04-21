@@ -3,20 +3,21 @@ package com.example.challenges.fulfillment;
 import com.example.challenges.fulfillment.domain.*;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 
 public class OrderFulfillmentEngine {
-    private static final int SCALE = 2;
-    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
+    private final ShippingPricingEngine shippingPricingEngine;
+
+    public OrderFulfillmentEngine(ShippingPricingEngine shippingPricingEngine) {
+        this.shippingPricingEngine = shippingPricingEngine;
+    }
 
     public FulfillmentReceipt processOrder(FulfillmentRequest request) {
         if (request == null) {
             throw new IllegalArgumentException("The request is null");
         }
-        List<Warehouse> orderedWarehouses = request.warehouses()
-                .stream().sorted(Comparator.comparing(Warehouse::distance))
-                .toList();
+        List<Warehouse> orderedWarehouses = sortWarehouses(request.warehouses());
+        Map<String, Map<String, Integer>> globalInventory = buildGlobalInventory(orderedWarehouses);
 
         Map<String, List<OrderItem>> fulfilledItemsPerWarehouse = new HashMap<>();
         List<OrderItem> unfulfilledItems = new ArrayList<>();
@@ -28,7 +29,7 @@ public class OrderFulfillmentEngine {
                 if (pendingQuantity == 0) {
                     break;
                 }
-                Map<String, Integer> virtualInventory = new HashMap<>(warehouse.inventory());
+                Map<String, Integer> virtualInventory = globalInventory.get(warehouse.id());
                 int availableInventory = virtualInventory.getOrDefault(orderItem.productId(), 0);
                 if (availableInventory > 0) {
                     int fulfilledQuantity = Math.min(pendingQuantity, availableInventory);
@@ -44,26 +45,31 @@ public class OrderFulfillmentEngine {
             }
         }
 
-        List<Shipment> shipments = getListOfShipments(fulfilledItemsPerWarehouse);
-        BigDecimal totalShippingCost = calculateTotalShippingCost(shipments);
+        List<Shipment> shipments = buildShipments(fulfilledItemsPerWarehouse);
+        BigDecimal totalShippingCost = shippingPricingEngine.calculateTotalShippingCost(shipments);
 
         return new FulfillmentReceipt(shipments, unfulfilledItems, totalShippingCost);
     }
 
-    private static List<Shipment> getListOfShipments(Map<String, List<OrderItem>> fulfilledItemsPerWarehouse) {
-        return fulfilledItemsPerWarehouse.entrySet()
-                .stream()
-                .map(entry -> new Shipment(entry.getKey(), entry.getValue()))
+    private List<Warehouse> sortWarehouses(List<Warehouse> warehouses) {
+        return warehouses
+                .stream().sorted(Comparator.comparing(Warehouse::distance))
                 .toList();
     }
 
-    private static BigDecimal calculateTotalShippingCost(List<Shipment> shipments) {
-        return shipments.stream()
-                .map(shipment -> {
-                    int totalUnits = shipment.fulfilledItems().stream().mapToInt(OrderItem::quantity).reduce(0, Integer::sum);
-                    return BigDecimal.TEN.add(BigDecimal.TWO.multiply(BigDecimal.valueOf(totalUnits)));
-                })
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .setScale(SCALE, ROUNDING_MODE);
+    private Map<String, Map<String, Integer>> buildGlobalInventory(List<Warehouse> orderedWarehouses) {
+        Map<String, Map<String, Integer>> globalInventoryMap = new HashMap<>();
+        for (Warehouse w : orderedWarehouses) {
+            globalInventoryMap.put(w.id(), new HashMap<>(w.inventory()));
+        }
+
+        return globalInventoryMap;
+    }
+
+    private List<Shipment> buildShipments(Map<String, List<OrderItem>> fulfilledItemsPerWarehouse) {
+        return fulfilledItemsPerWarehouse.entrySet()
+                .stream()
+                .map(entry -> Shipment.fromMapEntry(entry.getKey(), entry.getValue()))
+                .toList();
     }
 }

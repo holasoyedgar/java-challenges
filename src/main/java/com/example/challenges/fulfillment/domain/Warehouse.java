@@ -22,5 +22,6 @@ public record Warehouse(
                 .anyMatch(quantity -> quantity < 0)) {
             throw new IllegalArgumentException("Some quantities are negative.");
         }
+        inventory = Map.copyOf(inventory);
     }
 }

@@ -14,7 +14,7 @@ class OrderFulfillmentEngineTest {
             "fulfillment",
             FulfillmentRequest.class,
             FulfillmentReceipt.class,
-            input -> new OrderFulfillmentEngine().processOrder(input)
+            input -> new OrderFulfillmentEngine(new ShippingPricingEngine()).processOrder(input)
     );
 
     static Stream<String> testCaseProvider() {
