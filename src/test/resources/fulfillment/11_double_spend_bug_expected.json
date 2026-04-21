@@ -1,0 +1,15 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-1",
+      "fulfilledItems": [
+        { "productId": "HEADPHONE", "quantity": 5 },
+        { "productId": "HEADPHONE", "quantity": 1 }
+      ]
+    }
+  ],
+  "unfulfilledItems": [
+    { "productId": "HEADPHONE", "quantity": 4 }
+  ],
+  "totalShippingCost": 22.00
+}

@@ -1,0 +1,10 @@
+{
+  "warehouses": [
+    { "id": "WH-3", "distance": 30, "inventory": { "TABLET": 2 } },
+    { "id": "WH-1", "distance": 10, "inventory": { "TABLET": 5 } },
+    { "id": "WH-2", "distance": 20, "inventory": { "TABLET": 3 } }
+  ],
+  "requestedItems": [
+    { "productId": "TABLET", "quantity": 10 }
+  ]
+}

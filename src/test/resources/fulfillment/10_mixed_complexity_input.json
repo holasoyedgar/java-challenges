@@ -1,0 +1,11 @@
+{
+  "warehouses": [
+    { "id": "WH-1", "distance": 10, "inventory": { "SKU-A": 5, "SKU-B": 0 } },
+    { "id": "WH-2", "distance": 20, "inventory": { "SKU-A": 5, "SKU-B": 5 } }
+  ],
+  "requestedItems": [
+    { "productId": "SKU-A", "quantity": 12 },
+    { "productId": "SKU-B", "quantity": 2 },
+    { "productId": "SKU-C", "quantity": 5 }
+  ]
+}

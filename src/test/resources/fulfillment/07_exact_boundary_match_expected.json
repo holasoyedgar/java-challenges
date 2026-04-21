@@ -1,0 +1,18 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-1",
+      "fulfilledItems": [ { "productId": "TABLET", "quantity": 5 } ]
+    },
+    {
+      "warehouseId": "WH-2",
+      "fulfilledItems": [ { "productId": "TABLET", "quantity": 3 } ]
+    },
+    {
+      "warehouseId": "WH-3",
+      "fulfilledItems": [ { "productId": "TABLET", "quantity": 2 } ]
+    }
+  ],
+  "unfulfilledItems": [],
+  "totalShippingCost": 50.00
+}

@@ -1,0 +1,13 @@
+{
+  "warehouses": [
+    {
+      "id": "WH-1",
+      "distance": 10,
+      "inventory": { "HEADPHONE": 6 }
+    }
+  ],
+  "requestedItems": [
+    { "productId": "HEADPHONE", "quantity": 5 },
+    { "productId": "HEADPHONE", "quantity": 5 }
+  ]
+}

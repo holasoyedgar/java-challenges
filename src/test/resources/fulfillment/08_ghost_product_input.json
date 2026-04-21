@@ -1,0 +1,8 @@
+{
+  "warehouses": [
+    { "id": "WH-MAIN", "distance": 5, "inventory": { "MOUSE": 100 } }
+  ],
+  "requestedItems": [
+    { "productId": "KEYBOARD", "quantity": 3 }
+  ]
+}

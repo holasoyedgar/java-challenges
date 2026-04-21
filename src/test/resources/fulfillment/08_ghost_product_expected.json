@@ -1,0 +1,7 @@
+{
+  "shipments": [],
+  "unfulfilledItems": [
+    { "productId": "KEYBOARD", "quantity": 3 }
+  ],
+  "totalShippingCost": 0.00
+}

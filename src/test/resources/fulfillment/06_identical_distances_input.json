@@ -1,0 +1,9 @@
+{
+  "warehouses": [
+    { "id": "WH-B", "distance": 5, "inventory": { "PHONE": 10 } },
+    { "id": "WH-A", "distance": 5, "inventory": { "PHONE": 10 } }
+  ],
+  "requestedItems": [
+    { "productId": "PHONE", "quantity": 5 }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-A",
+      "fulfilledItems": [ { "productId": "PHONE", "quantity": 5 } ]
+    }
+  ],
+  "unfulfilledItems": [],
+  "totalShippingCost": 20.00
+}

@@ -1,0 +1,9 @@
+{
+  "warehouses": [
+    { "id": "WH-CLOSE", "distance": 1, "inventory": { "LAPTOP": 0 } },
+    { "id": "WH-FAR", "distance": 50, "inventory": { "LAPTOP": 2 } }
+  ],
+  "requestedItems": [
+    { "productId": "LAPTOP", "quantity": 1 }
+  ]
+}
