@@ -53,7 +53,9 @@ public class OrderFulfillmentEngine {
 
     private List<Warehouse> sortWarehouses(List<Warehouse> warehouses) {
         return warehouses
-                .stream().sorted(Comparator.comparing(Warehouse::distance))
+                .stream().sorted(Comparator
+                        .comparing(Warehouse::distance)
+                        .thenComparing(Warehouse::id))
                 .toList();
     }
 
