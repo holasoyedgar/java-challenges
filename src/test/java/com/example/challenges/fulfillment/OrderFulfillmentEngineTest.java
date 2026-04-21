@@ -18,16 +18,10 @@ class OrderFulfillmentEngineTest {
     );
 
     static Stream<String> testCaseProvider() {
-        return Stream.of(
-                "01_single_warehouse",
-                "02_split_order",
-                "03_partial_fulfillment",
-                "04_empty_order",
-                "05_complex_split"
-        );
+        return ChallengeTestRunner.getTestCases("fulfillment");
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{0}")
     @MethodSource("testCaseProvider")
     void executeTests(String caseName) {
         runner.runTest(caseName);

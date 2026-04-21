@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class ChallengeTestRunner<I, O> {
     private final String challengeName;
@@ -67,6 +68,21 @@ public class ChallengeTestRunner<I, O> {
         @Override
         public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        }
+    }
+
+    public static Stream<String> getTestCases(String challengeDir) {
+        try {
+            java.net.URI uri = ChallengeTestRunner.class.getClassLoader().getResource(challengeDir).toURI();
+            java.nio.file.Path dirPath = java.nio.file.Paths.get(uri);
+
+            return java.nio.file.Files.list(dirPath)
+                    .map(path -> path.getFileName().toString())
+                    .filter(fileName -> fileName.endsWith("_input.json"))
+                    .map(fileName -> fileName.replace("_input.json", ""))
+                    .sorted();
+        } catch (Exception e) {
+            throw new RuntimeException("Error al escanear el directorio de pruebas: " + challengeDir, e);
         }
     }
 
