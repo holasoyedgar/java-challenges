@@ -7,6 +7,8 @@ import java.math.RoundingMode;
 import java.util.*;
 
 public class OrderFulfillmentEngine {
+    private static final int SCALE = 2;
+    private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
 
     public FulfillmentReceipt processOrder(FulfillmentRequest request) {
         List<Warehouse> orderedWarehouses = request.warehouses()
@@ -15,7 +17,7 @@ public class OrderFulfillmentEngine {
 
         Map<String, List<OrderItem>> fulfilledItemsPerWarehouse = new HashMap<>();
         List<OrderItem> unfulfilledItems = new ArrayList<>();
-        BigDecimal totalShippingCost = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal totalShippingCost = BigDecimal.ZERO.setScale(SCALE, ROUNDING_MODE);
 
         for (OrderItem orderItem : request.requestedItems()) {
             int pendingQuantity = orderItem.quantity();
@@ -23,14 +25,14 @@ public class OrderFulfillmentEngine {
             for (Warehouse warehouse : orderedWarehouses) {
                 if (warehouse.inventory().containsKey(orderItem.productId())) {
                     int warehouseInventory = warehouse.inventory().get(orderItem.productId());
+                    if (warehouseInventory <= 0) {
+                        continue;
+                    }
                     int fulfilledQuantity = Math.min(pendingQuantity, warehouseInventory);
                     pendingQuantity = Math.max(0, pendingQuantity - warehouseInventory);
                     warehouseInventory = warehouseInventory - fulfilledQuantity;
-                    if (warehouseInventory == 0) {
-                        warehouse.inventory().remove(orderItem.productId());
-                    } else {
-                        warehouse.inventory().put(orderItem.productId(), warehouseInventory);
-                    }
+                    warehouse.inventory().put(orderItem.productId(), warehouseInventory);
+
                     if (fulfilledQuantity > 0) {
                         if (fulfilledItemsPerWarehouse.containsKey(warehouse.id())) {
                             List<OrderItem> orderItems = fulfilledItemsPerWarehouse.get(warehouse.id());
@@ -43,7 +45,7 @@ public class OrderFulfillmentEngine {
                         }
                         totalShippingCost = totalShippingCost
                                 .add(BigDecimal.TWO.multiply(BigDecimal.valueOf(fulfilledQuantity)))
-                                .setScale(2, RoundingMode.HALF_UP);
+                                .setScale(SCALE, ROUNDING_MODE);
                     }
                 }
             }
