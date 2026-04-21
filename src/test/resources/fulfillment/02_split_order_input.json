@@ -1,0 +1,17 @@
+{
+  "warehouses": [
+    {
+      "id": "WH-2",
+      "distance": 20,
+      "inventory": { "MOUSE": 10 }
+    },
+    {
+      "id": "WH-1",
+      "distance": 5,
+      "inventory": { "MOUSE": 2 }
+    }
+  ],
+  "requestedItems": [
+    { "productId": "MOUSE", "quantity": 5 }
+  ]
+}

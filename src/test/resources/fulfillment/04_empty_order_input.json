@@ -1,0 +1,10 @@
+{
+  "warehouses": [
+    {
+      "id": "WH-1",
+      "distance": 10,
+      "inventory": { "MONITOR": 5 }
+    }
+  ],
+  "requestedItems": []
+}

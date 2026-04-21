@@ -1,0 +1,14 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-1",
+      "fulfilledItems": [ { "productId": "MOUSE", "quantity": 2 } ]
+    },
+    {
+      "warehouseId": "WH-2",
+      "fulfilledItems": [ { "productId": "MOUSE", "quantity": 3 } ]
+    }
+  ],
+  "unfulfilledItems": [],
+  "totalShippingCost": 30.00
+}

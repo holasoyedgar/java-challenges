@@ -1,0 +1,12 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-1",
+      "fulfilledItems": [ { "productId": "KEYBOARD", "quantity": 1 } ]
+    }
+  ],
+  "unfulfilledItems": [
+    { "productId": "KEYBOARD", "quantity": 3 }
+  ],
+  "totalShippingCost": 12.00
+}

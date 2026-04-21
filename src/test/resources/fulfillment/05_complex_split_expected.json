@@ -1,0 +1,21 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-A",
+      "fulfilledItems": [ { "productId": "SKU-1", "quantity": 1 } ]
+    },
+    {
+      "warehouseId": "WH-B",
+      "fulfilledItems": [ { "productId": "SKU-2", "quantity": 2 } ]
+    },
+    {
+      "warehouseId": "WH-C",
+      "fulfilledItems": [
+        { "productId": "SKU-1", "quantity": 2 },
+        { "productId": "SKU-2", "quantity": 2 }
+      ]
+    }
+  ],
+  "unfulfilledItems": [],
+  "totalShippingCost": 44.00
+}

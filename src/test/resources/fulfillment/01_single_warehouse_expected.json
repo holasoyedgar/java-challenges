@@ -1,0 +1,10 @@
+{
+  "shipments": [
+    {
+      "warehouseId": "WH-1",
+      "fulfilledItems": [ { "productId": "LAPTOP", "quantity": 2 } ]
+    }
+  ],
+  "unfulfilledItems": [],
+  "totalShippingCost": 14.00
+}
