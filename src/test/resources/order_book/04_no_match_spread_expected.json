@@ -1,0 +1,11 @@
+{
+  "trades": [],
+  "snapshot": {
+    "bids": [
+      { "orderId": "B1", "price": 99.00, "remainingQuantity": 10 }
+    ],
+    "asks": [
+      { "orderId": "S1", "price": 101.00, "remainingQuantity": 10 }
+    ]
+  }
+}

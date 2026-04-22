@@ -1,0 +1,13 @@
+{
+  "trades": [
+    { "makerOrderId": "S1", "takerOrderId": "B1", "executionPrice": 10.00, "executedQuantity": 10 },
+    { "makerOrderId": "S2", "takerOrderId": "B1", "executionPrice": 11.00, "executedQuantity": 20 },
+    { "makerOrderId": "S3", "takerOrderId": "B1", "executionPrice": 12.00, "executedQuantity": 5 }
+  ],
+  "snapshot": {
+    "bids": [],
+    "asks": [
+      { "orderId": "S3", "price": 12.00, "remainingQuantity": 5 }
+    ]
+  }
+}

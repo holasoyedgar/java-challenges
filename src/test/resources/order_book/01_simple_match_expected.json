@@ -1,0 +1,9 @@
+{
+  "trades": [
+    { "makerOrderId": "S1", "takerOrderId": "B1", "executionPrice": 100.00, "executedQuantity": 10 }
+  ],
+  "snapshot": {
+    "bids": [],
+    "asks": []
+  }
+}

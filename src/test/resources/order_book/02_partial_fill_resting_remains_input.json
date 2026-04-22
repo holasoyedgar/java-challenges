@@ -1,0 +1,6 @@
+{
+  "commands": [
+    { "orderId": "S1", "side": "SELL", "price": 50.00, "quantity": 100 },
+    { "orderId": "B1", "side": "BUY", "price": 50.00, "quantity": 40 }
+  ]
+}
