@@ -2,70 +2,87 @@ package com.example.challenges.trading;
 
 import com.example.challenges.trading.domain.*;
 
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.BiPredicate;
 
 public class LimitOrderBookEngine {
+
+    private record MatchExecution(PrioritizedOrderCommand remainder, List<Trade> trades) {
+    }
 
     public MatchingResult processOrders(OrderBookRequest request) {
         if (request == null || request.commands() == null) {
             return new MatchingResult(List.of(), new OrderBookSnapshot(List.of(), List.of()));
         }
 
-        CategorizedOrderCommands categorizedOrderCommands = CategorizedOrderCommands.categorize(request.commands());
+        PriorityQueue<PrioritizedOrderCommand> bids = new PriorityQueue<>(Comparator.comparing(PrioritizedOrderCommand::price)
+                .reversed()
+                .thenComparingInt(PrioritizedOrderCommand::order));
 
-        Queue<PrioritizedOrderCommand> buyOrderCommands = categorizedOrderCommands.getBuyOrderCommands();
+        PriorityQueue<PrioritizedOrderCommand> asks = new PriorityQueue<>(Comparator.comparing(PrioritizedOrderCommand::price)
+                .thenComparingInt(PrioritizedOrderCommand::order));
 
-        Queue<PrioritizedOrderCommand> sellOrderCommands = categorizedOrderCommands.getSellOrderCommands();
+        List<Trade> allTrades = new ArrayList<>();
 
-        List<Trade> trades = getTrades(buyOrderCommands, sellOrderCommands);
+        for (int order = 0; order < request.commands().size(); order++) {
+            OrderCommand orderCommand = request.commands().get(order);
+            PrioritizedOrderCommand incomingOrder = PrioritizedOrderCommand.fromOrderCommand(orderCommand, order);
 
-        List<RestingOrder> bids = fillOutBids(buyOrderCommands);
+            if (orderCommand.side() == OrderSide.BUY) {
+                MatchExecution matchExecution = matchOrder(incomingOrder, asks, (taker, maker) -> taker.compareTo(maker) >= 0);
+                incomingOrder = matchExecution.remainder();
+                allTrades.addAll(matchExecution.trades());
+                if (incomingOrder.quantity() > 0) {
+                    bids.offer(incomingOrder);
+                }
+            } else {
+                MatchExecution matchExecution = matchOrder(incomingOrder, bids, (taker, maker) -> maker.compareTo(taker) >= 0);
+                incomingOrder = matchExecution.remainder();
+                allTrades.addAll(matchExecution.trades());
+                if (incomingOrder.quantity() > 0) {
+                    asks.offer(incomingOrder);
+                }
+            }
+        }
 
-        List<RestingOrder> asks = fillOutAsks(sellOrderCommands);
-
-        return new MatchingResult(trades, new OrderBookSnapshot(bids, asks));
+        return new MatchingResult(allTrades, buildSnapshot(bids, asks));
     }
 
-    private List<Trade> getTrades(Queue<PrioritizedOrderCommand> buyOrderCommands, Queue<PrioritizedOrderCommand> sellOrderCommands) {
+    private MatchExecution matchOrder(PrioritizedOrderCommand taker, Queue<PrioritizedOrderCommand> oppositeQueue, BiPredicate<BigDecimal, BigDecimal> predicate) {
         List<Trade> trades = new ArrayList<>();
-
-        while (!buyOrderCommands.isEmpty() && !sellOrderCommands.isEmpty()) {
-            PrioritizedOrderCommand buyOrderCommand = buyOrderCommands.peek();
-            PrioritizedOrderCommand sellOrderCommand = sellOrderCommands.peek();
-            if (buyOrderCommand.price().compareTo(sellOrderCommand.price()) < 0) {
+        while (taker.quantity() > 0 && !oppositeQueue.isEmpty()) {
+            PrioritizedOrderCommand maker = oppositeQueue.peek();
+            if (!predicate.test(taker.price(), maker.price())) {
                 break;
             }
-            Trade trade = Trade.fromPrioritizedOrderCommands(buyOrderCommand, sellOrderCommand);
+            int executedQuantity = Math.min(taker.quantity(), maker.quantity());
+            Trade trade = new Trade(maker.orderId(),
+                    taker.orderId(),
+                    maker.price(),
+                    executedQuantity);
+
             trades.add(trade);
-            buyOrderCommands.poll();
-            if (buyOrderCommand.quantity() > trade.executedQuantity()) {
-                buyOrderCommands.offer(buyOrderCommand.withSubtractedExecutedQuantity(trade.executedQuantity()));
+            oppositeQueue.poll();
+            if (maker.quantity() > executedQuantity) {
+                oppositeQueue.offer(maker.withSubtractedExecutedQuantity(executedQuantity));
             }
-
-            sellOrderCommands.poll();
-            if (sellOrderCommand.quantity() > trade.executedQuantity()) {
-                sellOrderCommands.offer(sellOrderCommand.withSubtractedExecutedQuantity(trade.executedQuantity()));
-            }
+            taker = taker.withSubtractedExecutedQuantity(executedQuantity);
         }
 
-        return trades;
+        return new MatchExecution(taker, trades);
     }
 
-    private List<RestingOrder> fillOutBids(Queue<PrioritizedOrderCommand> buyOrderCommands) {
-        return fillOutRestingOrders(buyOrderCommands);
-    }
+    private OrderBookSnapshot buildSnapshot(PriorityQueue<PrioritizedOrderCommand> bids, PriorityQueue<PrioritizedOrderCommand> asks) {
+        List<RestingOrder> bidRestingOrders = bids.stream()
+                .sorted(bids.comparator())
+                .map(RestingOrder::fromPrioritizedOrderCommand)
+                .toList();
 
-    private List<RestingOrder> fillOutAsks(Queue<PrioritizedOrderCommand> sellOrderCommands) {
-        return fillOutRestingOrders(sellOrderCommands);
-    }
-
-    private List<RestingOrder> fillOutRestingOrders(Queue<PrioritizedOrderCommand> orderCommands) {
-        List<RestingOrder> restingOrders = new ArrayList<>();
-        while (!orderCommands.isEmpty()) {
-            PrioritizedOrderCommand orderCommand = orderCommands.peek();
-            restingOrders.add(RestingOrder.fromPrioritizedOrderCommand(orderCommand));
-            orderCommands.poll();
-        }
-        return restingOrders;
+        List<RestingOrder> askRestingOrders = asks.stream()
+                .sorted(asks.comparator())
+                .map(RestingOrder::fromPrioritizedOrderCommand)
+                .toList();
+        return new OrderBookSnapshot(bidRestingOrders, askRestingOrders);
     }
 }
