@@ -7,4 +7,10 @@ public record OrderCommand(
         OrderSide side,
         BigDecimal price,
         int quantity
-) {}
+) {
+    public OrderCommand {
+        if (side == null) {
+            throw new IllegalArgumentException("The order side was not supplied.");
+        }
+    }
+}
