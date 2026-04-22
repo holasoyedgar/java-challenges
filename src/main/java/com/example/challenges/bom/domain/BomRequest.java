@@ -11,13 +11,7 @@ public record BomRequest(
         if (requestedQuantity < 1) {
             throw new IllegalArgumentException("The requested quantity must be greater than 0.");
         }
-        edges = List.copyOf(edges);
-    }
-    public boolean nullOrEmptyEdges() {
-        return edges == null || edges.isEmpty();
-    }
+        edges = edges == null ? List.of() : List.copyOf(edges);
 
-    public boolean nonBlankTargetProductId() {
-        return targetProductId != null && !targetProductId.isBlank();
     }
 }

@@ -11,29 +11,28 @@ import java.util.stream.Collectors;
 
 public class BomExplosionEngine {
     public BomReceipt explode(BomRequest request) {
-        if (request == null || request.nullOrEmptyEdges()) {
-            return BomReceipt.defaultBomReceipt(request);
+        if (request == null || request.targetProductId() == null || request.targetProductId().isBlank()) {
+            return new BomReceipt(Map.of());
         }
 
-        Map<String, List<BomEdge>> groupedBomEdgesByParentId = request.edges().stream()
+        Map<String, List<BomEdge>> adjacencyList = request.edges().stream()
                 .collect(Collectors.groupingBy(BomEdge::parentId));
 
-        Map<String, Integer> rawMaterialAccumulator = new HashMap<>();
+        Map<String, Integer> rawMaterials = traverse(request.targetProductId(), request.requestedQuantity(), adjacencyList);
 
-        traverse(request.targetProductId(), request.requestedQuantity(), groupedBomEdgesByParentId, rawMaterialAccumulator);
-
-        return new BomReceipt(rawMaterialAccumulator);
+        return new BomReceipt(rawMaterials);
     }
 
-    private void traverse(String currentId, int currentQty, Map<String, List<BomEdge>> groupedBomEdgesByParentId, Map<String, Integer> rawMaterialAccumulator) {
-        List<BomEdge> edges = groupedBomEdgesByParentId.getOrDefault(currentId, List.of());
-        for (BomEdge edge : edges) {
-            if (edge.parentId().equals(currentId)) {
-                traverse(edge.childId(), currentQty * edge.quantityMultiplier(), groupedBomEdgesByParentId, rawMaterialAccumulator);
-            }
-        }
+    private Map<String, Integer> traverse(String currentId, int currentQty, Map<String, List<BomEdge>> adjacencyList) {
+        List<BomEdge> edges = adjacencyList.getOrDefault(currentId, List.of());
         if (edges.isEmpty()) {
-            rawMaterialAccumulator.merge(currentId, currentQty, Integer::sum);
+            return Map.of(currentId, currentQty);
         }
+        Map<String, Integer> subTreeAccumulator = new HashMap<>();
+        for (BomEdge edge : edges) {
+            Map<String, Integer> childRequirements = traverse(edge.childId(), currentQty * edge.quantityMultiplier(), adjacencyList);
+            childRequirements.forEach((key, value) -> subTreeAccumulator.merge(key, value, Integer::sum));
+        }
+        return subTreeAccumulator;
     }
 }
