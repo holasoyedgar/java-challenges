@@ -1,0 +1,12 @@
+{
+  "targetProductId": "BIKE",
+  "requestedQuantity": 1,
+  "edges": [
+    { "parentId": "BIKE", "childId": "WHEEL", "quantityMultiplier": 2 },
+    { "parentId": "BIKE", "childId": "FRAME", "quantityMultiplier": 1 },
+    { "parentId": "WHEEL", "childId": "SPOKE", "quantityMultiplier": 20 },
+    { "parentId": "WHEEL", "childId": "TIRE", "quantityMultiplier": 1 },
+    { "parentId": "FRAME", "childId": "ALUMINUM", "quantityMultiplier": 5 },
+    { "parentId": "FRAME", "childId": "PAINT", "quantityMultiplier": 1 }
+  ]
+}

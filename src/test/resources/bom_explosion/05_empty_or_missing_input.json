@@ -1,0 +1,7 @@
+{
+  "targetProductId": "ALIEN_PART",
+  "requestedQuantity": 5,
+  "edges": [
+    { "parentId": "OTHER", "childId": "SUB_OTHER", "quantityMultiplier": 1 }
+  ]
+}

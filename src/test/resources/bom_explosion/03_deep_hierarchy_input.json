@@ -1,0 +1,9 @@
+{
+  "targetProductId": "L1",
+  "requestedQuantity": 5,
+  "edges": [
+    { "parentId": "L1", "childId": "L2", "quantityMultiplier": 2 },
+    { "parentId": "L2", "childId": "L3", "quantityMultiplier": 2 },
+    { "parentId": "L3", "childId": "L4", "quantityMultiplier": 2 }
+  ]
+}
