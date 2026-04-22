@@ -1,0 +1,23 @@
+{
+  "targetProductId": "ENDURO_MAX_2026",
+  "requestedQuantity": 50,
+  "edges": [
+    { "parentId": "ENDURO_MAX_2026", "childId": "FRAME_SET", "quantityMultiplier": 1 },
+    { "parentId": "ENDURO_MAX_2026", "childId": "WHEEL_SET", "quantityMultiplier": 2 },
+    { "parentId": "ENDURO_MAX_2026", "childId": "DRIVETRAIN", "quantityMultiplier": 1 },
+
+    { "parentId": "FRAME_SET", "childId": "ALU_FRAME_RAW", "quantityMultiplier": 1 },
+    { "parentId": "FRAME_SET", "childId": "BOLT_M6", "quantityMultiplier": 8 },
+    { "parentId": "FRAME_SET", "childId": "STEEL_BEARING", "quantityMultiplier": 4 },
+
+    { "parentId": "WHEEL_SET", "childId": "RIM_29", "quantityMultiplier": 1 },
+    { "parentId": "WHEEL_SET", "childId": "SPOKE_STAINLESS", "quantityMultiplier": 32 },
+    { "parentId": "WHEEL_SET", "childId": "HUB_ASSEMBLY", "quantityMultiplier": 1 },
+
+    { "parentId": "HUB_ASSEMBLY", "childId": "STEEL_BEARING", "quantityMultiplier": 2 },
+    { "parentId": "HUB_ASSEMBLY", "childId": "BOLT_M6", "quantityMultiplier": 6 },
+
+    { "parentId": "DRIVETRAIN", "childId": "CHAIN_12S", "quantityMultiplier": 1 },
+    { "parentId": "DRIVETRAIN", "childId": "CASSETTE_STEEL", "quantityMultiplier": 1 }
+  ]
+}

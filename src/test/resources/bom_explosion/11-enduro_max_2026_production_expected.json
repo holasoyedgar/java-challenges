@@ -1,0 +1,11 @@
+{
+  "rawMaterialRequirements": {
+    "ALU_FRAME_RAW": 50,
+    "BOLT_M6": 1000,
+    "STEEL_BEARING": 400,
+    "RIM_29": 100,
+    "SPOKE_STAINLESS": 3200,
+    "CHAIN_12S": 50,
+    "CASSETTE_STEEL": 50
+  }
+}

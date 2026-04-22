@@ -1,0 +1,11 @@
+{
+  "targetProductId": "CAR",
+  "requestedQuantity": 1,
+  "edges": [
+    { "parentId": "CAR", "childId": "ENGINE", "quantityMultiplier": 1 },
+    { "parentId": "CAR", "childId": "DOOR", "quantityMultiplier": 4 },
+    { "parentId": "ENGINE", "childId": "SCREW", "quantityMultiplier": 100 },
+    { "parentId": "DOOR", "childId": "WINDOW", "quantityMultiplier": 1 },
+    { "parentId": "DOOR", "childId": "SCREW", "quantityMultiplier": 20 }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "targetProductId": "PC_BUILD",
+  "requestedQuantity": 1,
+  "edges": [
+    { "parentId": "PC_BUILD", "childId": "CPU", "quantityMultiplier": 1 },
+    { "parentId": "PC_BUILD", "childId": "OPTIONAL_DRIVE", "quantityMultiplier": 0 },
+    { "parentId": "OPTIONAL_DRIVE", "childId": "LASER_LENS", "quantityMultiplier": 1 }
+  ]
+}

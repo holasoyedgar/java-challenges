@@ -1,0 +1,10 @@
+{
+  "targetProductId": "PRODUCT_A",
+  "requestedQuantity": 1,
+  "edges": [
+    { "parentId": "PRODUCT_A", "childId": "SUB_B", "quantityMultiplier": 2 },
+    { "parentId": "SUB_B", "childId": "RAW_C", "quantityMultiplier": 3 },
+    { "parentId": "GHOST_PRODUCT", "childId": "SUB_X", "quantityMultiplier": 5 },
+    { "parentId": "SUB_X", "childId": "RAW_Z", "quantityMultiplier": 10 }
+  ]
+}

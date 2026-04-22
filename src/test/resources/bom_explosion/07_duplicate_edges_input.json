@@ -1,0 +1,8 @@
+{
+  "targetProductId": "DESK",
+  "requestedQuantity": 1,
+  "edges": [
+    { "parentId": "DESK", "childId": "WOOD_PANEL", "quantityMultiplier": 2 },
+    { "parentId": "DESK", "childId": "WOOD_PANEL", "quantityMultiplier": 3 }
+  ]
+}

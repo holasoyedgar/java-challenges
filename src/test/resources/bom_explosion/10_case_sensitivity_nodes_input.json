@@ -1,0 +1,9 @@
+{
+  "targetProductId": "BOX",
+  "requestedQuantity": 2,
+  "edges": [
+    { "parentId": "BOX", "childId": "Glue", "quantityMultiplier": 1 },
+    { "parentId": "BOX", "childId": "GLUE", "quantityMultiplier": 2 },
+    { "parentId": "BOX", "childId": "glue", "quantityMultiplier": 3 }
+  ]
+}
